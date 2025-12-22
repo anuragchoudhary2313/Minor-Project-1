@@ -4,7 +4,7 @@
 
 ### A Modern MERN Stack Food Ordering Platform
 
-[![JavaScript](https://img.shields.io/badge/JavaScript-93. 0%25-yellow? style=flat&logo=javascript)](https://github.com/anuragchoudhary2313/Minor-Project-1)
+[![JavaScript](https://img.shields.io/badge/JavaScript-93.0%25-yellow?style=flat&logo=javascript)](https://github.com/anuragchoudhary2313/Minor-Project-1)
 [![React](https://img.shields.io/badge/React-18.0.0-61DAFB?style=flat&logo=react)](https://reactjs.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-Express-339933?style=flat&logo=node.js)](https://nodejs.org/)
 [![MongoDB](https://img.shields.io/badge/MongoDB-Database-47A248?style=flat&logo=mongodb)](https://www.mongodb.com/)
@@ -17,7 +17,7 @@
 
 ## 📖 About The Project
 
-**GoFood** is a full-stack food delivery application built as a Minor Project for 3rd year.  This web application allows users to browse restaurants, order food, and track their orders in real-time.  The project demonstrates modern web development practices using the MERN (MongoDB, Express, React, Node. js) stack.
+**GoFood** is a full-stack food delivery application built as a Minor Project for 3rd year. This web application allows users to browse restaurants, order food, and track their orders in real-time.
 
 ### ✨ Key Highlights
 
@@ -64,16 +64,16 @@
 ```javascript
 {
   "runtime": "Node.js",
-  "framework": "Express. js",
+  "framework": "Express.js",
   "database": "MongoDB with Mongoose",
-  "authentication":  "JWT (jsonwebtoken)",
+  "authentication": "JWT (jsonwebtoken)",
   "password-hashing": "bcryptjs",
   "validation": "Express Validator"
 }
 ```
 
 ### Languages
-- **JavaScript**:  93.0%
+- **JavaScript**: 93.0%
 - **HTML**: 4.4%
 - **CSS**: 2.6%
 
@@ -83,7 +83,7 @@
 
 ### Prerequisites
 
-Before you begin, ensure you have the following installed: 
+Before you begin, ensure you have the following installed:
 - [Node.js](https://nodejs.org/) (v14 or higher)
 - [MongoDB](https://www.mongodb.com/) (local or Atlas)
 - [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
@@ -131,7 +131,7 @@ Before you begin, ensure you have the following installed:
 
 6. **Access the Application**
    
-   Open your browser and navigate to: 
+   Open your browser and navigate to:
    ```
    http://localhost:3000
    ```
@@ -202,7 +202,7 @@ Contributions are what make the open-source community such an amazing place to l
 
 ## 📝 License
 
-This project is created for educational purposes as a Minor Project. 
+This project is created for educational purposes as a Minor Project.
 
 ---
 
@@ -211,7 +211,7 @@ This project is created for educational purposes as a Minor Project.
 **Anurag Choudhary**
 
 - GitHub: [@anuragchoudhary2313](https://github.com/anuragchoudhary2313)
-- Backend Credits:  Arshdeep Singh
+- Backend Credits: Arshdeep Singh
 
 ---
 
@@ -230,7 +230,7 @@ This project is created for educational purposes as a Minor Project.
 <div align="center">
 
 ![Repository Size](https://img.shields.io/github/repo-size/anuragchoudhary2313/Minor-Project-1?style=flat-square)
-![Last Commit](https://img.shields.io/github/last-commit/anuragchoudhary2313/Minor-Project-1? style=flat-square)
+![Last Commit](https://img.shields.io/github/last-commit/anuragchoudhary2313/Minor-Project-1?style=flat-square)
 ![Stars](https://img.shields.io/github/stars/anuragchoudhary2313/Minor-Project-1?style=social)
 ![Forks](https://img.shields.io/github/forks/anuragchoudhary2313/Minor-Project-1?style=social)
 
@@ -240,7 +240,7 @@ This project is created for educational purposes as a Minor Project.
 
 <div align="center">
 
-### ⭐ If you found this project helpful, please consider giving it a star! 
+### ⭐ If you found this project helpful, please consider giving it a star!
 
 **Made with ❤️ for learning and innovation**
 
