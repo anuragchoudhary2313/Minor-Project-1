@@ -7,32 +7,27 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-// CORS: in production allow the configured frontend, in development allow any origin (convenient for localhost ports)
-if (process.env.NODE_ENV === 'production') {
-  app.use(cors({
-    origin: process.env.FRONTEND_URL,
-    credentials: true
-  }));
-} else {
-  // Permit any origin during development to avoid preflight failures across localhost ports
-  app.use(cors({ origin: true, credentials: true }));
-  // Ensure OPTIONS preflight requests are handled and return CORS headers
-  app.options('*', cors({ origin: true, credentials: true }));
-  // Add lightweight logging of origin/method to help debug CORS issues
-  app.use((req, res, next) => {
-    if (process.env.NODE_ENV === 'development') {
-      console.log('[CORS DEBUG] Origin:', req.headers.origin, 'Method:', req.method, 'Path:', req.path);
-    }
-    // Early respond to OPTIONS to satisfy preflight checks
-    if (req.method === 'OPTIONS') {
-      res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
-      res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
-      res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers'] || 'Content-Type, Authorization');
-      return res.sendStatus(204);
-    }
-    next();
-  });
-}
+// CORS: Allow frontend URLs
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://localhost:3001',
+  process.env.FRONTEND_URL,
+  'https://minor-project-1-ptcf3tanx-anurag-choudharys-projects-858a202a.vercel.app',
+  'https://mernapp.vercel.app'
+].filter(Boolean);
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+// Handle preflight requests
+app.options('*', cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
