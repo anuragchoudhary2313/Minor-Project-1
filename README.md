@@ -2,10 +2,21 @@
 
 > A fully modernized, production-ready food delivery platform built with MERN stack (MongoDB, Express, React, Node.js)
 
-[![Frontend Status](https://img.shields.io/badge/Frontend-%20Running-green)]()
-[![Backend Status](https://img.shields.io/badge/Backend-%20Ready-green)]()
+[![Frontend Status](https://img.shields.io/badge/Frontend-%20Running-green)](https://minor-project-1-woad.vercel.app)
+[![Backend Status](https://img.shields.io/badge/Backend-%20Ready-green)](https://gofood-backend-3s51.onrender.com)
 [![Security](https://img.shields.io/badge/Security-%20Modern-green)]()
 [![Code Quality](https://img.shields.io/badge/Code%20Quality-%20Professional-green)]()
+
+---
+
+## 🚀 Live Deployment Links
+
+| Component | URL | Status |
+|-----------|-----|--------|
+| **Frontend** | [https://minor-project-1-woad.vercel.app](https://minor-project-1-woad.vercel.app) | ✅ Live |
+| **Backend API** | [https://gofood-backend-3s51.onrender.com](https://gofood-backend-3s51.onrender.com) | ✅ Live |
+| **API Health** | [https://gofood-backend-3s51.onrender.com/api/health](https://gofood-backend-3s51.onrender.com/api/health) | ✅ Live |
+| **GitHub Repo** | [https://github.com/anuragchoudhary2313/Minor-Project-1](https://github.com/anuragchoudhary2313/Minor-Project-1) | ✅ Active |
 
 ---
 
