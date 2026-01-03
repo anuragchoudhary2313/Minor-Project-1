@@ -1,101 +1,140 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
+import { API_ENDPOINTS, apiCall } from '../utils/api';
 
 export default function MyOrder() {
+  const [orderData, setOrderData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    const [orderData, setorderData] = useState({})
+  const fetchMyOrders = useCallback(async () => {
+    try {
+      setLoading(true);
+      setError(null);
 
-    const fetchMyOrder = async () => {
-        console.log(localStorage.getItem('userEmail'))
-        await fetch("http://localhost:5000/api/auth/myOrderData", {
-            // credentials: 'include',
-            // Origin:"http://localhost:3000/login",
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body:JSON.stringify({
-                email:localStorage.getItem('userEmail')
-            })
-        }).then(async (res) => {
-            let response = await res.json()
-            await setorderData(response)
-        })
+      const userEmail = localStorage.getItem('userEmail');
+      if (!userEmail) {
+        setError('Please login to view your orders');
+        return;
+      }
 
+      const response = await apiCall(API_ENDPOINTS.GET_MY_ORDERS, {
+        method: 'POST',
+        body: JSON.stringify({ email: userEmail }),
+      });
 
-
-        // await res.map((data)=>{
-        //    console.log(data)
-        // })
-
-
+      if (response.success) {
+        setOrderData(response.orderData);
+      } else {
+        setError(response.error || 'Failed to fetch orders');
+      }
+    } catch (err) {
+      console.error('Fetch orders error:', err);
+      setError(err.message || 'Failed to fetch orders');
+    } finally {
+      setLoading(false);
     }
+  }, []);
 
-    useEffect(() => {
-        fetchMyOrder()
-    }, [])
+  useEffect(() => {
+    fetchMyOrders();
+  }, [fetchMyOrders]);
 
+  if (loading) {
     return (
-        <div>
-            <div>
-                <Navbar />
-            </div>
-
-            <div className='container'>
-                <div className='row'>
-
-                    {orderData !== {} ? Array(orderData).map(data => {
-                        return (
-                            data.orderData ?
-                                data.orderData.order_data.slice(0).reverse().map((item) => {
-                                    return (
-                                        item.map((arrayData) => {
-                                            return (
-                                                <div  >
-                                                    {arrayData.Order_date ? <div className='m-auto mt-5'>
-
-                                                        {data = arrayData.Order_date}
-                                                        <hr />
-                                                    </div> :
-
-                                                        <div className='col-12 col-md-6 col-lg-3' >
-                                                            <div className="card mt-3" style={{ width: "16rem", maxHeight: "360px" }}>
-                                                                <img src={arrayData.img} className="card-img-top" alt="..." style={{ height: "120px", objectFit: "fill" }} />
-                                                                <div className="card-body">
-                                                                    <h5 className="card-title">{arrayData.name}</h5>
-                                                                    <div className='container w-100 p-0' style={{ height: "38px" }}>
-                                                                        <span className='m-1'>{arrayData.qty}</span>
-                                                                        <span className='m-1'>{arrayData.size}</span>
-                                                                        <span className='m-1'>{data}</span>
-                                                                        <div className=' d-inline ms-2 h-100 w-20 fs-5' >
-                                                                            ₹{arrayData.price}/-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-
-
-
-                                                    }
-
-                                                </div>
-                                            )
-                                        })
-
-                                    )
-                                }) : ""
-                        )
-                    }) : ""}
-                </div>
-
-
-            </div>
-
-            <Footer />
+      <>
+        <Navbar />
+        <div className="container text-center mt-5 pt-5">
+          <div className="spinner-border text-success" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
         </div>
-    )
+        <Footer />
+      </>
+    );
+  }
+
+  if (error) {
+    return (
+      <>
+        <Navbar />
+        <div className="container text-center mt-5 pt-5">
+          <div className="alert alert-danger" role="alert">
+            {error}
+            <button className="btn btn-success mt-3 d-block mx-auto" onClick={fetchMyOrders}>
+              Retry
+            </button>
+          </div>
+        </div>
+        <Footer />
+      </>
+    );
+  }
+
+  if (!orderData || !orderData.order_data || orderData.order_data.length === 0) {
+    return (
+      <>
+        <Navbar />
+        <div className="container text-center mt-5 pt-5">
+          <h3>No orders yet!</h3>
+          <p>Start ordering delicious food from GoFood.</p>
+        </div>
+        <Footer />
+      </>
+    );
+  }
+
+  return (
+    <>
+      <Navbar />
+      <div className="container mt-5">
+        <h2 className="mb-4">My Orders</h2>
+        <div className="row">
+          {orderData.order_data
+            .slice(0)
+            .reverse()
+            .map((order, orderIndex) => (
+              <div key={orderIndex} className="col-12 mb-4">
+                {order.map((item, itemIndex) => {
+                  if (item.Order_date) {
+                    return (
+                      <div key={itemIndex} className="alert alert-info" role="alert">
+                        <strong>Order Date:</strong> {item.Order_date}
+                        <hr />
+                      </div>
+                    );
+                  }
+
+                  return (
+                    <div key={itemIndex} className="col-12 col-md-6 col-lg-3">
+                      <div className="card mt-3" style={{ width: '16rem', maxHeight: '360px' }}>
+                        {item.img && (
+                          <img
+                            src={item.img}
+                            className="card-img-top"
+                            alt={item.name}
+                            style={{ height: '120px', objectFit: 'fill' }}
+                            loading="lazy"
+                          />
+                        )}
+                        <div className="card-body">
+                          <h5 className="card-title">{item.name}</h5>
+                          <div className="container w-100 p-0">
+                            <span className="badge bg-success m-1">Qty: {item.qty}</span>
+                            <span className="badge bg-info m-1">{item.size}</span>
+                            <div className="fs-5 mt-2">₹{item.price}/-</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
+        </div>
+      </div>
+      <Footer />
+    </>
+  );
 }
-// {"orderData":{"_id":"63024fd2be92d0469bd9e31a","email":"mohanDas@gmail.com","order_data":[[[{"id":"62ff20fbaed6a15f800125e9","name":"Chicken Fried Rice","qty":"4","size":"half","price":520},{"id":"62ff20fbaed6a15f800125ea","name":"Veg Fried Rice","qty":"4","size":"half","price":440}],"2022-08-21T15:31:30.239Z"],[[{"id":"62ff20fbaed6a15f800125f4","name":"Mix Veg Pizza","qty":"4","size":"medium","price":800},{"id":"62ff20fbaed6a15f800125f3","name":"Chicken Doub;e Cheeze Pizza","qty":"4","size":"regular","price":480}],"2022-08-21T15:32:38.861Z"]],"__v":0}}

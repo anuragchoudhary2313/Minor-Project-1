@@ -1,102 +1,486 @@
-import React, { useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import { API_ENDPOINTS, apiCall } from '../utils/api';
+
 export default function Signup() {
-  const [credentials, setCredentials] = useState({ name: "", email: "", password: "", geolocation: "" })
-  let [address, setAddress] = useState("");
-  let navigate = useNavigate()
+  const [credentials, setCredentials] = useState({
+    name: '',
+    email: '',
+    password: '',
+    geolocation: '',
+  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [toast, setToast] = useState('');
+  const navigate = useNavigate();
 
-  const handleClick = async (e) => {
-    e.preventDefault();
-    let navLocation = () => {
-      return new Promise((res, rej) => {
-        navigator.geolocation.getCurrentPosition(res, rej);
-      });
+  const showToast = (msg = '') => {
+    setToast(msg);
+    if (msg) setTimeout(() => setToast(''), 3000);
+  };
+
+  const handleSocial = (provider) => {
+    // If OAuth client IDs / backend endpoint available, redirect to backend OAuth flow
+    const prov = provider.toLowerCase();
+    const envFlag = process.env[`REACT_APP_${prov.toUpperCase()}_CLIENT_ID`];
+    if (envFlag) {
+      // open full-window redirect to backend OAuth route (backend should handle provider flow)
+      window.location.href = `/api/auth/oauth/${prov}`;
+      return;
     }
-    let latlong = await navLocation().then(res => {
-      let latitude = res.coords.latitude;
-      let longitude = res.coords.longitude;
-      return [latitude, longitude]
-    })
-    // console.log(latlong)
-    let [lat, long] = latlong
-    console.log(lat, long)
-    const response = await fetch("http://localhost:5000/api/auth/getlocation", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ latlong: { lat, long } })
 
-    });
-    const { location } = await response.json()
-    console.log(location);
-    setAddress(location);
-    setCredentials({ ...credentials, [e.target.name]: location })
-  }
+    // fallback stub (previous behavior)
+    showToast(`${provider} sign-in successful`);
+    setTimeout(() => {
+      localStorage.setItem('token', `stub-${provider}`);
+      navigate('/');
+    }, 900);
+  };
+
+  // Geolocation removed — not required for signup. Keep credentials.geolocation for optional future use.
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/api/auth/createuser", {
-      // credentials: 'include',
-      // Origin:"http://localhost:3000/login",
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ name: credentials.name, email: credentials.email, password: credentials.password, location: credentials.geolocation })
-
-    });
-    const json = await response.json()
-    console.log(json);
-    if (json.success) {
-      //save the auth toke to local storage and redirect
-      localStorage.setItem('token', json.authToken)
-      navigate("/login")
-
+    setLoading(true);
+    setError('');
+    try {
+      const data = await apiCall(API_ENDPOINTS.SIGNUP, {
+        method: 'POST',
+        body: JSON.stringify({
+          name: credentials.name,
+          email: credentials.email,
+          password: credentials.password,
+          location: credentials.geolocation || '',
+        }),
+      });
+      if (data.success) {
+        localStorage.setItem('token', data.authToken);
+        showToast('Account created — redirecting...');
+        setTimeout(() => navigate('/login'), 900);
+      } else {
+        setError(data.error || 'Signup failed');
+      }
+    } catch (err) {
+      setError(err.message || 'Signup failed. Please try again.');
+    } finally {
+      setLoading(false);
     }
-    else {
-      alert("Enter Valid Credentials")
-    }
-  }
+  };
 
-  const onChange = (e) => {
-    setCredentials({ ...credentials, [e.target.name]: e.target.value })
-  }
+  const onChange = (e) => setCredentials({ ...credentials, [e.target.name]: e.target.value });
 
   return (
-    <div style={{ backgroundImage: 'url("https://images.pexels.com/photos/1565982/pexels-photo-1565982.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")', backgroundSize: 'cover',height: '100vh' }}>
-      <div>
+    <>
       <Navbar />
-      </div>
+      <div
+        style={{
+          minHeight: '100vh',
+          background: 'linear-gradient(180deg,#f5f6f7 0%, #efefef 100%)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '60px 20px',
+        }}
+      >
+        <div
+          style={{
+            width: '100%',
+            maxWidth: '1100px',
+            borderRadius: '14px',
+            overflow: 'hidden',
+            display: 'flex',
+            boxShadow: '0 20px 60px rgba(16,24,40,0.15)',
+          }}
+        >
+          <div style={{ flex: '1 1 520px', background: '#fff', padding: '48px 56px' }}>
+            <div style={{ maxWidth: '420px', margin: '0 auto' }}>
+              <h1
+                style={{
+                  margin: 0,
+                  fontSize: '28px',
+                  fontWeight: 700,
+                  color: '#0f172a',
+                  textAlign: 'center',
+                }}
+              >
+                Sign into your account
+              </h1>
+              <p style={{ marginTop: '8px', color: '#6b7280', textAlign: 'center' }}>
+                Sign up and get 1 month free trial
+              </p>
 
-        <div className='container' >
-          <form className='w-50 m-auto mt-5 border bg-dark border-success rounded' onSubmit={handleSubmit}>
-            <div className="m-3">
-              <label htmlFor="name" className="form-label">Name</label>
-              <input type="text" className="form-control" name='name' value={credentials.name} onChange={onChange} aria-describedby="emailHelp" />
+              <div style={{ position: 'relative', marginTop: '22px' }}>
+                <div
+                  style={{
+                    display: 'flex',
+                    gap: '12px',
+                    background: '#f3f4f6',
+                    borderRadius: '10px',
+                    padding: '6px',
+                  }}
+                >
+                  <button
+                    style={{
+                      flex: 1,
+                      padding: '10px 14px',
+                      borderRadius: '8px',
+                      border: 'none',
+                      background: '#ffffff',
+                      boxShadow: 'inset 0 0 0 1px rgba(15,23,42,0.04)',
+                      fontWeight: 700,
+                      cursor: 'default',
+                    }}
+                  >
+                    Sign up
+                  </button>
+                  <Link
+                    to="/login"
+                    style={{
+                      flex: 1,
+                      padding: '10px 14px',
+                      borderRadius: '8px',
+                      background: 'transparent',
+                      border: 'none',
+                      color: '#9ca3af',
+                      textDecoration: 'none',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    Log in
+                  </Link>
+                </div>
+
+                {/* Overlapping orange pill (adjusted for exact placement + optional icon) */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    top: -14,
+                  }}
+                >
+                  <div
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 10,
+                      background: 'linear-gradient(90deg,#ff8a00,#ff4d4d)',
+                      color: '#fff',
+                      padding: '10px 20px',
+                      borderRadius: 9999,
+                      boxShadow: '0 12px 40px rgba(255,90,40,0.18)',
+                      fontWeight: 800,
+                      fontSize: '14px',
+                    }}
+                  >
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden
+                    >
+                      <path d="M12 2L15 8H9L12 2Z" fill="white" />
+                      <path
+                        d="M12 22V9"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                    <span>Get Started</span>
+                  </div>
+                </div>
+              </div>
+
+              {error && (
+                <div
+                  style={{
+                    marginTop: '18px',
+                    padding: '12px',
+                    borderRadius: '8px',
+                    background: '#fff7ed',
+                    color: '#c2410c',
+                    border: '1px solid rgba(249,115,22,0.12)',
+                  }}
+                >
+                  {error}
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} style={{ marginTop: '20px' }}>
+                <label
+                  htmlFor="signup-name"
+                  style={{
+                    display: 'block',
+                    fontSize: '13px',
+                    color: '#374151',
+                    marginBottom: '8px',
+                  }}
+                >
+                  Full name
+                </label>
+                <input
+                  id="signup-name"
+                  name="name"
+                  value={credentials.name}
+                  onChange={onChange}
+                  required
+                  placeholder="Enter your name"
+                  style={{
+                    width: '100%',
+                    padding: '12px 14px',
+                    borderRadius: '8px',
+                    border: '1px solid #e6e9ef',
+                    marginBottom: '12px',
+                    fontSize: '15px',
+                  }}
+                />
+
+                <label
+                  htmlFor="signup-email"
+                  style={{
+                    display: 'block',
+                    fontSize: '13px',
+                    color: '#374151',
+                    marginBottom: '8px',
+                  }}
+                >
+                  Email
+                </label>
+                <input
+                  id="signup-email"
+                  name="email"
+                  value={credentials.email}
+                  onChange={onChange}
+                  required
+                  type="email"
+                  placeholder="Enter your email"
+                  style={{
+                    width: '100%',
+                    padding: '12px 14px',
+                    borderRadius: '8px',
+                    border: '1px solid #e6e9ef',
+                    marginBottom: '12px',
+                    fontSize: '15px',
+                  }}
+                />
+
+                <label
+                  htmlFor="signup-password"
+                  style={{
+                    display: 'block',
+                    fontSize: '13px',
+                    color: '#374151',
+                    marginBottom: '8px',
+                  }}
+                >
+                  Password
+                </label>
+                <input
+                  id="signup-password"
+                  name="password"
+                  value={credentials.password}
+                  onChange={onChange}
+                  required
+                  type="password"
+                  placeholder="Enter your password"
+                  style={{
+                    width: '100%',
+                    padding: '12px 14px',
+                    borderRadius: '8px',
+                    border: '1px solid #e6e9ef',
+                    marginBottom: '18px',
+                    fontSize: '15px',
+                  }}
+                />
+
+                <label
+                  htmlFor="signup-password2"
+                  style={{
+                    display: 'block',
+                    fontSize: '13px',
+                    color: '#374151',
+                    marginBottom: '8px',
+                  }}
+                >
+                  Repeat the password
+                </label>
+                <input
+                  id="signup-password2"
+                  name="password2"
+                  type="password"
+                  placeholder="Enter your password"
+                  style={{
+                    width: '100%',
+                    padding: '12px 14px',
+                    borderRadius: '8px',
+                    border: '1px solid #e6e9ef',
+                    marginBottom: '18px',
+                    fontSize: '15px',
+                  }}
+                />
+
+                <div style={{ display: 'flex', gap: '12px' }}>
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    style={{
+                      flex: 1,
+                      background: 'linear-gradient(90deg,#3b82f6,#2563eb)',
+                      color: '#fff',
+                      padding: '12px',
+                      borderRadius: '8px',
+                      border: 'none',
+                      fontWeight: 700,
+                      cursor: 'pointer',
+                    }}
+                  >
+                    {loading ? 'Signing up...' : 'Sign up'}
+                  </button>
+                </div>
+
+                <div style={{ display: 'flex', gap: '12px', marginTop: '18px' }}>
+                  <button
+                    type="button"
+                    onClick={() => handleSocial('Google')}
+                    style={{
+                      flex: 1,
+                      borderRadius: '8px',
+                      padding: '10px',
+                      border: '1px solid #e6e9ef',
+                      background: '#fff',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    Sign up with Google
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleSocial('Apple')}
+                    style={{
+                      flex: 1,
+                      borderRadius: '8px',
+                      padding: '10px',
+                      border: '1px solid #e6e9ef',
+                      background: '#fff',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    Sign up with Apple
+                  </button>
+                </div>
+
+                <p style={{ fontSize: '12px', color: '#9ca3af', marginTop: '18px' }}>
+                  By signing up, you agree to the{' '}
+                  <a href="/terms" style={{ color: '#2563eb' }}>
+                    Terms of Service
+                  </a>{' '}
+                  and{' '}
+                  <a href="/privacy" style={{ color: '#2563eb' }}>
+                    Privacy Policy
+                  </a>
+                  .
+                </p>
+              </form>
+
+              {/* Toast */}
+              {toast && (
+                <div
+                  style={{
+                    position: 'fixed',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    bottom: 28,
+                    background: '#111827',
+                    color: '#fff',
+                    padding: '12px 18px',
+                    borderRadius: 10,
+                    boxShadow: '0 12px 40px rgba(2,6,23,0.4)',
+                  }}
+                >
+                  {toast}
+                </div>
+              )}
             </div>
-            <div className="m-3">
-              <label htmlFor="email" className="form-label">Email address</label>
-              <input type="email" className="form-control" name='email' value={credentials.email} onChange={onChange} aria-describedby="emailHelp" />
+          </div>
+
+          <div
+            style={{
+              flex: '1 1 520px',
+              background: 'linear-gradient(180deg,#111827 0%, #0b1220 100%)',
+              color: '#fff',
+              position: 'relative',
+              padding: '32px',
+            }}
+          >
+            <div
+              style={{
+                height: '100%',
+                borderRadius: '0 12px 12px 0',
+                overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+              }}
+            >
+              <div
+                style={{
+                  height: '100%',
+                  backgroundImage:
+                    'url(https://images.unsplash.com/photo-1541698444083-023c97d3f4b6?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=)',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  filter: 'grayscale(100%)',
+                  position: 'relative',
+                }}
+              >
+                <div
+                  style={{
+                    position: 'absolute',
+                    right: 18,
+                    top: 18,
+                    background: 'rgba(255,255,255,0.06)',
+                    width: 36,
+                    height: 36,
+                    borderRadius: 8,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                  }}
+                >
+                  ←
+                </div>
+                <div style={{ position: 'absolute', left: 18, bottom: 24, right: 18 }}>
+                  <div
+                    style={{
+                      background: 'linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.6))',
+                      padding: '18px',
+                      borderRadius: '12px',
+                      maxWidth: '85%',
+                    }}
+                  >
+                    <p style={{ margin: 0, color: '#e6eef6', fontSize: '14px', lineHeight: 1.4 }}>
+                      Knowly has transformed the way I learn! The courses are well-structured,
+                      engaging, and easy to follow. I highly recommend it for anyone looking to
+                      upskill!
+                    </p>
+                    <div style={{ marginTop: '12px', color: '#a1b2c9', fontSize: '12px' }}>
+                      Koushik · UI/UX Designer
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="m-3">
-              <label htmlFor="address" className="form-label">Address</label>
-              <fieldset>
-                <input type="text" className="form-control" name='address' placeholder='"Click below for fetching address"' value={address} onChange={(e)=>setAddress(e.target.value)} aria-describedby="emailHelp" />
-              </fieldset>
-            </div>
-            <div className="m-3">
-              <button type="button" onClick={handleClick} name="geolocation" className=" btn btn-success">Click for current Location </button>
-            </div>
-            <div className="m-3">
-              <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-              <input type="password" className="form-control" value={credentials.password} onChange={onChange} name='password' />
-            </div>
-            <button type="submit" className="m-3 btn btn-success">Submit</button>
-            <Link to="/login" className="m-3 mx-1 btn btn-danger">Already a user</Link>
-          </form>
+          </div>
         </div>
       </div>
-  )
+    </>
+  );
 }
