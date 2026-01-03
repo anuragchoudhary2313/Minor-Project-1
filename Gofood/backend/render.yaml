@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: gofood-backend
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        scope: build
+        sync: false
+      - key: JWT_SECRET
+        scope: build
+        sync: false
+      - key: OPENCAGE_API_KEY
+        scope: build
+        sync: false
+      - key: PORT
+        value: 3000
