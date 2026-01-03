@@ -525,7 +525,6 @@ This project is created for educational purposes as a Minor Project.
 **Anurag Choudhary**
 
 - GitHub: [@anuragchoudhary2313](https://github.com/anuragchoudhary2313)
-- Backend Credits: Arshdeep Singh
 
 ---
 
