@@ -1,21 +1,25 @@
 # Quick Vercel Deployment - 5 Steps
 
 ## Step 1: Install Vercel CLI
+
 ```bash
 npm install -g vercel
 ```
 
 ## Step 2: Create MongoDB Atlas Cluster
+
 1. Go to https://www.mongodb.com/cloud/atlas
 2. Create free M0 cluster
 3. Create database user and get connection string
 4. Copy connection string (format: `mongodb+srv://user:pass@cluster.mongodb.net/gofood`)
 
 ## Step 3: Deploy Backend
+
 ```bash
 cd Gofood/backend
 vercel --prod
 ```
+
 - When asked for environment variables, add:
   - `MONGO_URI`: Your MongoDB connection string
   - `JWT_SECRET`: A strong secret key
@@ -24,16 +28,19 @@ vercel --prod
 **Note:** Copy your backend URL after deployment (e.g., `https://xxx.vercel.app`)
 
 ## Step 4: Update Frontend with Backend URL
+
 ```bash
 # In Gofood/package.json, environment variables will be:
 # REACT_APP_API_URL=https://your-backend-url.vercel.app
 ```
 
 ## Step 5: Deploy Frontend
+
 ```bash
 cd Gofood
 vercel --prod
 ```
+
 - Add environment variable:
   - `REACT_APP_API_URL`: Your backend URL from Step 3
 
@@ -66,6 +73,7 @@ vercel --prod
 ## Environment Variables Quick Reference
 
 ### Backend
+
 ```
 MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/gofood
 JWT_SECRET=your_strong_secret_key_here
@@ -73,6 +81,7 @@ NODE_ENV=production
 ```
 
 ### Frontend
+
 ```
 REACT_APP_API_URL=https://your-backend.vercel.app
 ```
