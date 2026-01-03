@@ -6,6 +6,7 @@ services:
     rootDir: Gofood/backend
     buildCommand: npm install
     startCommand: npm start
+    autoDeploy: true
     envVars:
       - key: NODE_ENV
         value: production
@@ -18,5 +19,3 @@ services:
       - key: OPENCAGE_API_KEY
         scope: build
         sync: false
-      - key: PORT
-        value: 3000

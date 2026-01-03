@@ -1,9 +1,11 @@
 # Quick Render Deployment - 3 Steps
 
 ## Step 1: Create Render Account
+
 Go to https://render.com → Sign up with GitHub
 
 ## Step 2: Deploy Backend
+
 1. Dashboard → "New +" → "Web Service"
 2. Connect repo: `anuragchoudhary2313/Minor-Project-1`
 3. Configure:
@@ -16,7 +18,9 @@ Go to https://render.com → Sign up with GitHub
 4. Click "Create Web Service"
 
 ## Step 3: Add Environment Variables
+
 After deployment:
+
 1. Service Dashboard → Environment
 2. Add:
    ```
@@ -30,10 +34,12 @@ After deployment:
 ---
 
 ## Get Your Backend URL
+
 - Dashboard shows URL like: `https://gofood-backend.onrender.com`
 - Use this in Vercel frontend as `REACT_APP_API_URL`
 
 ## Test It Works
+
 ```bash
 curl https://gofood-backend.onrender.com/api/health
 ```

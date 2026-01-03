@@ -5,6 +5,7 @@ This guide explains how to deploy the GoFood backend on Render.
 ## What is Render?
 
 Render is a modern cloud platform for deploying applications. It offers:
+
 - Free tier with automatic deploys from GitHub
 - Native support for Node.js/Express apps
 - Free PostgreSQL/MongoDB connection support
@@ -28,6 +29,7 @@ Render is a modern cloud platform for deploying applications. It offers:
 Your backend is already configured! Key points:
 
 ✅ **package.json** has correct scripts:
+
 - `npm start` - runs the server
 - `npm dev` - runs with nodemon
 
@@ -70,14 +72,14 @@ Your backend is already configured! Key points:
 3. Connect your GitHub repo
 4. Fill in details:
 
-   | Field | Value |
-   |-------|-------|
-   | Name | gofood-backend |
-   | Environment | Node |
-   | Region | Recommended region close to you |
-   | Build Command | `npm install` |
-   | Start Command | `npm start` |
-   | Plan | Free |
+   | Field         | Value                           |
+   | ------------- | ------------------------------- |
+   | Name          | gofood-backend                  |
+   | Environment   | Node                            |
+   | Region        | Recommended region close to you |
+   | Build Command | `npm install`                   |
+   | Start Command | `npm start`                     |
+   | Plan          | Free                            |
 
 5. Click "Create Web Service"
 
@@ -121,11 +123,13 @@ curl https://gofood-backend.onrender.com/api/health
 ## Step 6: Get Backend URL for Frontend
 
 Your backend URL will be something like:
+
 ```
 https://gofood-backend.onrender.com
 ```
 
 **Update frontend with this URL** in Vercel environment variables:
+
 ```
 REACT_APP_API_URL=https://gofood-backend.onrender.com
 ```
@@ -175,16 +179,19 @@ PORT=3000 (automatically set by Render)
 ### Common Issues
 
 #### "Logs show connection timeout"
+
 - Check MongoDB IP whitelist (should be 0.0.0.0/0)
 - Verify connection string format
 - Test connection string locally first
 
 #### "Service keeps restarting"
+
 - Check environment variables are set correctly
 - Review logs for specific errors
 - Ensure Node version is compatible
 
 #### "Port already in use"
+
 - Render automatically handles ports
 - Don't hardcode ports in code
 - Use `process.env.PORT || 5000`
@@ -194,11 +201,13 @@ PORT=3000 (automatically set by Render)
 ## Testing Backend Endpoints
 
 ### Health Check
+
 ```bash
 curl https://gofood-backend.onrender.com/api/health
 ```
 
 ### Create User
+
 ```bash
 curl -X POST https://gofood-backend.onrender.com/api/auth/createuser \
   -H "Content-Type: application/json" \
@@ -206,6 +215,7 @@ curl -X POST https://gofood-backend.onrender.com/api/auth/createuser \
 ```
 
 ### Login
+
 ```bash
 curl -X POST https://gofood-backend.onrender.com/api/auth/login \
   -H "Content-Type: application/json" \
@@ -228,6 +238,7 @@ git push origin main
 ```
 
 Render will:
+
 1. Detect the push
 2. Pull latest code
 3. Run build command
@@ -253,6 +264,7 @@ Render will:
 ### Upgrade to Paid (Optional)
 
 For production, upgrade to paid plan:
+
 - Always-on instances
 - Better performance
 - More resources
@@ -265,6 +277,7 @@ For production, upgrade to paid plan:
 ### Build Fails
 
 Check:
+
 1. Node version compatibility
 2. All dependencies in package.json
 3. Build command runs correctly locally
@@ -273,6 +286,7 @@ Check:
 ### App Crashes After Deploy
 
 Check logs:
+
 1. Go to service → Logs
 2. Look for error messages
 3. Check MongoDB connection
@@ -287,13 +301,16 @@ Check logs:
 ### CORS Errors from Frontend
 
 Update backend `index.js`:
+
 ```javascript
-app.use(cors({
-  origin: [
-    'https://your-vercel-frontend.vercel.app',
-    'http://localhost:3000'
-  ]
-}));
+app.use(
+  cors({
+    origin: [
+      "https://your-vercel-frontend.vercel.app",
+      "http://localhost:3000",
+    ],
+  })
+);
 ```
 
 ---
@@ -313,6 +330,7 @@ app.use(cors({
 ## Cost Breakdown
 
 **Render Free Tier:**
+
 - ✅ Free web services
 - ✅ 0.5 GB RAM per instance
 - ✅ 1 shared CPU
@@ -320,6 +338,7 @@ app.use(cors({
 - ✅ Auto sleep after 15 min inactivity
 
 **MongoDB Atlas Free Tier:**
+
 - ✅ M0 Sandbox (512 MB storage)
 - ✅ Shared clusters
 - ✅ Good for development
@@ -352,6 +371,7 @@ app.use(cors({
 ## Support
 
 For issues:
+
 1. Check Render logs in dashboard
 2. Review MongoDB Atlas connection
 3. Verify environment variables
