@@ -1,4 +1,4 @@
-#  GoFood - Modern MERN Application
+# GoFood - Modern MERN Application
 
 > A fully modernized, production-ready food delivery platform built with MERN stack (MongoDB, Express, React, Node.js)
 
@@ -11,16 +11,16 @@
 
 ## 🚀 Live Deployment Links
 
-| Component | URL | Status |
-|-----------|-----|--------|
-| **Frontend** | [https://minor-project-1-woad.vercel.app](https://minor-project-1-woad.vercel.app) | ✅ Live |
-| **Backend API** | [https://gofood-backend-3s51.onrender.com](https://gofood-backend-3s51.onrender.com) | ✅ Live |
-| **API Health** | [https://gofood-backend-3s51.onrender.com/api/health](https://gofood-backend-3s51.onrender.com/api/health) | ✅ Live |
+| Component       | URL                                                                                                              | Status    |
+| --------------- | ---------------------------------------------------------------------------------------------------------------- | --------- |
+| **Frontend**    | [https://minor-project-1-woad.vercel.app](https://minor-project-1-woad.vercel.app)                               | ✅ Live   |
+| **Backend API** | [https://gofood-backend-3s51.onrender.com](https://gofood-backend-3s51.onrender.com)                             | ✅ Live   |
+| **API Health**  | [https://gofood-backend-3s51.onrender.com/api/health](https://gofood-backend-3s51.onrender.com/api/health)       | ✅ Live   |
 | **GitHub Repo** | [https://github.com/anuragchoudhary2313/Minor-Project-1](https://github.com/anuragchoudhary2313/Minor-Project-1) | ✅ Active |
 
 ---
 
-##  Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -30,25 +30,29 @@
 ### Setup (3 steps)
 
 \\\ash
+
 # 1. Backend setup
+
 cd Gofood/backend
 npm install
 npm run dev
 
 # 2. Frontend setup (new terminal)
+
 cd Gofood
 npm install
 npm start
 
 # 3. Ensure MongoDB is running
+
 mongod
 \\\
 
-**App opens at: http://localhost:3000** 
+**App opens at: http://localhost:3000**
 
 ---
 
-##  Documentation
+## Documentation
 
 | Document                                                   | Purpose                                  |
 | ---------------------------------------------------------- | ---------------------------------------- |
@@ -58,54 +62,54 @@ mongod
 | **[INDEX.md](INDEX.md)**                                   | Navigation guide for all docs            |
 | **[VERIFICATION_CHECKLIST.md](VERIFICATION_CHECKLIST.md)** | Final verification and completion status |
 
- **New? Start with [QUICK_START.md](QUICK_START.md)**
+**New? Start with [QUICK_START.md](QUICK_START.md)**
 
 ---
 
-##  What's New
+## What's New
 
 ### Backend Improvements
 
--  Async/await throughout (no callbacks)
--  JWT authentication with 24hr expiration
--  Password hashing with bcryptjs
--  Proper error handling middleware
--  MongoDB connection with env variables
--  Protected API routes
--  Comprehensive input validation
+- Async/await throughout (no callbacks)
+- JWT authentication with 24hr expiration
+- Password hashing with bcryptjs
+- Proper error handling middleware
+- MongoDB connection with env variables
+- Protected API routes
+- Comprehensive input validation
 
 ### Frontend Improvements
 
--  Modern React patterns (hooks, context)
--  Centralized API utility with auth injection
--  Error boundaries for crash prevention
--  Loading states on all screens
--  Fixed cart reducer bug
--  Form validation and error handling
--  Responsive mobile design
--  Image lazy loading
+- Modern React patterns (hooks, context)
+- Centralized API utility with auth injection
+- Error boundaries for crash prevention
+- Loading states on all screens
+- Fixed cart reducer bug
+- Form validation and error handling
+- Responsive mobile design
+- Image lazy loading
 
 ### Security
 
--  JWT authentication
--  Secure password hashing
--  Protected routes
--  CORS configured
--  Environment variables for secrets
--  Input validation (frontend + backend)
--  Secure logout with cleanup
+- JWT authentication
+- Secure password hashing
+- Protected routes
+- CORS configured
+- Environment variables for secrets
+- Input validation (frontend + backend)
+- Secure logout with cleanup
 
 ### Performance
 
--  Code splitting ready
--  Memoized components
--  Efficient state management
--  Lazy image loading
--  No unnecessary re-renders
+- Code splitting ready
+- Memoized components
+- Efficient state management
+- Lazy image loading
+- No unnecessary re-renders
 
 ---
 
-##  Improvements Overview
+## Improvements Overview
 
 | Aspect           | Before      | After             |
 | ---------------- | ----------- | ----------------- |
@@ -118,7 +122,7 @@ mongod
 
 ---
 
-##  Tech Stack
+## Tech Stack
 
 ### Backend
 
@@ -140,59 +144,59 @@ mongod
 
 ---
 
-##  Features
+## Features
 
 ### User Authentication
 
--  Sign up with email and password
--  Geolocation-based address
--  Secure JWT tokens
--  Password hashing
--  Secure logout
+- Sign up with email and password
+- Geolocation-based address
+- Secure JWT tokens
+- Password hashing
+- Secure logout
 
 ### Food Discovery
 
--  Browse food items
--  Search functionality
--  Category filtering
--  Responsive design
--  Image preview
+- Browse food items
+- Search functionality
+- Category filtering
+- Responsive design
+- Image preview
 
 ### Shopping Cart
 
--  Add items to cart
--  Update quantities and sizes
--  Remove items
--  Real-time cart counter
--  Persist cart state
+- Add items to cart
+- Update quantities and sizes
+- Remove items
+- Real-time cart counter
+- Persist cart state
 
 ### Order Management
 
--  Place orders
--  View order history
--  Order details (date, items, price)
--  Secure checkout
--  Error handling
+- Place orders
+- View order history
+- Order details (date, items, price)
+- Secure checkout
+- Error handling
 
 ### User Features
 
--  **User Authentication** - Register, login, and manage user profiles
--  **Browse Menu** - View available food items and restaurants
--  **Shopping Cart** - Add, remove, and manage cart items
--  **Order Placement** - Place orders with multiple payment options
--  **Order History** - Track current and past orders
+- **User Authentication** - Register, login, and manage user profiles
+- **Browse Menu** - View available food items and restaurants
+- **Shopping Cart** - Add, remove, and manage cart items
+- **Order Placement** - Place orders with multiple payment options
+- **Order History** - Track current and past orders
 
 ### Technical Features
 
--  **RESTful API** - Well-structured backend API
--  **Secure Routes** - Protected routes with JWT authentication
--  **Data Validation** - Input validation using Express Validator
--  **State Management** - Efficient state handling in React
--  **Responsive Design** - Works seamlessly on all devices
+- **RESTful API** - Well-structured backend API
+- **Secure Routes** - Protected routes with JWT authentication
+- **Data Validation** - Input validation using Express Validator
+- **State Management** - Efficient state handling in React
+- **Responsive Design** - Works seamlessly on all devices
 
 ---
 
-##  Security Features
+## Security Features
 
 - JWT with 24-hour expiration
 - Bcryptjs password hashing (10 rounds)
@@ -205,7 +209,7 @@ mongod
 
 ---
 
-##  API Endpoints
+## API Endpoints
 
 ### Authentication
 
@@ -222,7 +226,7 @@ mongod
 
 ---
 
-##  Environment Configuration
+## Environment Configuration
 
 ### Backend (.env)
 
@@ -242,36 +246,36 @@ REACT_APP_API_URL=http://localhost:5000
 
 ---
 
-##  Project Structure
+## Project Structure
 
 \\\
 Gofood/
- backend/              # Express server
-    db.js
-    index.js
-    Routes/Auth.js
-    models/
-    middleware/
-    package.json
- src/                  # React app
-    components/
-    screens/
-    utils/api.js      # NEW
-    App.js
- public/
- package.json
+backend/ # Express server
+db.js
+index.js
+Routes/Auth.js
+models/
+middleware/
+package.json
+src/ # React app
+components/
+screens/
+utils/api.js # NEW
+App.js
+public/
+package.json
 
 Documentation/
- QUICK_START.md        # Setup guide
- PROJECT_STATUS.md     # Modernization report
- COMPLETION_SUMMARY.md # Overview
- INDEX.md              # Navigation
- VERIFICATION_CHECKLIST.md
+QUICK_START.md # Setup guide
+PROJECT_STATUS.md # Modernization report
+COMPLETION_SUMMARY.md # Overview
+INDEX.md # Navigation
+VERIFICATION_CHECKLIST.md
 \\\
 
 ---
 
-##  Quick Verification
+## Quick Verification
 
 After setup, verify everything works:
 
@@ -287,26 +291,33 @@ After setup, verify everything works:
 
 ---
 
-##  Troubleshooting
+## Troubleshooting
 
 ### MongoDB Connection Refused
 
 \\\ash
+
 # Ensure MongoDB is running
+
 mongod
 \\\
 
 ### Port Already in Use
 
 \\\ash
+
 # Backend: Change PORT in .env
+
 # Frontend: Terminal will ask for new port
+
 \\\
 
 ### Module Not Found
 
 \\\ash
+
 # Reinstall dependencies
+
 npm install
 npm cache clean --force
 \\\
@@ -315,7 +326,7 @@ See [QUICK_START.md](QUICK_START.md) for more troubleshooting tips.
 
 ---
 
-##  Performance Metrics
+## Performance Metrics
 
 - **Initial Load**: ~2-3 seconds
 - **API Response**: <500ms
@@ -325,7 +336,7 @@ See [QUICK_START.md](QUICK_START.md) for more troubleshooting tips.
 
 ---
 
-##  Deployment
+## Deployment
 
 ### Prerequisites for Production
 
@@ -340,9 +351,9 @@ See [PROJECT_STATUS.md](PROJECT_STATUS.md) for complete checklist.
 
 ---
 
-##  Modern Practices Used
+## Modern Practices Used
 
- Patterns & Practices:
+Patterns & Practices:
 
 - Async/Await for all async operations
 - Custom React hooks for code reuse
@@ -357,7 +368,7 @@ See [PROJECT_STATUS.md](PROJECT_STATUS.md) for complete checklist.
 
 ---
 
-##  Installation
+## Installation
 
 ### Prerequisites
 
@@ -424,24 +435,29 @@ Before you begin, ensure you have the following installed:
 
 ---
 
-##  Usage
+## Usage
 
 ### Running the Application
 
 #### Development Mode
 
 \\\ash
+
 # Frontend (from Gofood directory)
+
 npm start
 
 # Backend (from Gofood/backend directory)
+
 nodemon index.js
 \\\
 
 #### Production Build
 
 \\\ash
+
 # Create optimized production build
+
 npm run build
 \\\
 
@@ -450,6 +466,7 @@ npm run build
 In the project directory, you can run:
 
 #### \
+
 pm start\
 
 Runs the app in the development mode.
@@ -459,11 +476,13 @@ The page will reload when you make changes.
 You may also see any lint errors in the console.
 
 #### \
+
 pm test\
 
 Launches the test runner in the interactive watch mode.
 
 #### \
+
 pm run build\
 
 Builds the app for production to the \uild\ folder.
@@ -473,36 +492,37 @@ The build is minified and the filenames include the hashes.
 Your app is ready to be deployed!
 
 #### \
+
 pm run eject\
 
 **Note: this is a one-way operation. Once you \eject\, you can't go back!**
 
 ---
 
-##  Project Structure
+## Project Structure
 
 \\\
 Minor-Project-1/
- Gofood/
-     backend/
-        models/           # Database models
-        routes/           # API routes
-        middleware/       # Custom middleware
-        package.json      # Backend dependencies
-        index.js          # Server entry point
-     public/               # Static files
-     src/
-        components/       # React components
-        screens/          # Page components
-        App.js            # Main App component
-        index.js          # React entry point
-     package.json          # Frontend dependencies
-     README.md
+Gofood/
+backend/
+models/ # Database models
+routes/ # API routes
+middleware/ # Custom middleware
+package.json # Backend dependencies
+index.js # Server entry point
+public/ # Static files
+src/
+components/ # React components
+screens/ # Page components
+App.js # Main App component
+index.js # React entry point
+package.json # Frontend dependencies
+README.md
 \\\
 
 ---
 
-##  Contributing
+## Contributing
 
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
@@ -514,13 +534,13 @@ Contributions are what make the open-source community such an amazing place to l
 
 ---
 
-##  License
+## License
 
 This project is created for educational purposes as a Minor Project.
 
 ---
 
-##  Author
+## Author
 
 **Anurag Choudhary**
 
@@ -528,7 +548,7 @@ This project is created for educational purposes as a Minor Project.
 
 ---
 
-##  Acknowledgments
+## Acknowledgments
 
 - [React Documentation](https://reactjs.org/)
 - [Material-UI](https://mui.com/)
@@ -539,7 +559,7 @@ This project is created for educational purposes as a Minor Project.
 
 ---
 
-##  Project Stats
+## Project Stats
 
 <div align="center">
 
@@ -552,15 +572,15 @@ This project is created for educational purposes as a Minor Project.
 
 ---
 
-##  Help & Support
+## Help & Support
 
 ### Documentation
 
-1. **Quick Setup**  [QUICK_START.md](QUICK_START.md)
-2. **Understand Changes**  [PROJECT_STATUS.md](PROJECT_STATUS.md)
-3. **Quick Overview**  [COMPLETION_SUMMARY.md](COMPLETION_SUMMARY.md)
-4. **Find Info**  [INDEX.md](INDEX.md)
-5. **Verify Status**  [VERIFICATION_CHECKLIST.md](VERIFICATION_CHECKLIST.md)
+1. **Quick Setup** [QUICK_START.md](QUICK_START.md)
+2. **Understand Changes** [PROJECT_STATUS.md](PROJECT_STATUS.md)
+3. **Quick Overview** [COMPLETION_SUMMARY.md](COMPLETION_SUMMARY.md)
+4. **Find Info** [INDEX.md](INDEX.md)
+5. **Verify Status** [VERIFICATION_CHECKLIST.md](VERIFICATION_CHECKLIST.md)
 
 ### Common Issues
 
@@ -568,38 +588,38 @@ This project is created for educational purposes as a Minor Project.
 
 ---
 
-##  Ready to Go!
+## Ready to Go!
 
 Your GoFood application is:
 
--  Fully modernized
--  Production-ready
--  Well-documented
--  Security hardened
--  Performance optimized
--  Ready to extend
+- Fully modernized
+- Production-ready
+- Well-documented
+- Security hardened
+- Performance optimized
+- Ready to extend
 
-**Start with [QUICK_START.md](QUICK_START.md) and enjoy!** 
+**Start with [QUICK_START.md](QUICK_START.md) and enjoy!**
 
 ---
 
-###  Key Highlights
+### Key Highlights
 
--  Modern and responsive UI with React and Material-UI
--  Secure authentication using JWT
--  Shopping cart functionality
--  Mobile-friendly responsive design
--  Dark mode support with Bootstrap Dark
--  Fast and optimized performance
+- Modern and responsive UI with React and Material-UI
+- Secure authentication using JWT
+- Shopping cart functionality
+- Mobile-friendly responsive design
+- Dark mode support with Bootstrap Dark
+- Fast and optimized performance
 
 ---
 
 <div align="center">
 
-###  If you found this project helpful, please consider giving it a star!
+### If you found this project helpful, please consider giving it a star!
 
-**Made with  for learning and innovation**
+**Made with for learning and innovation**
 
-**Happy coding!** 
+**Happy coding!**
 
 </div>

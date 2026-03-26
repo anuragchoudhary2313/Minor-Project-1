@@ -11,8 +11,8 @@ export default function Cart() {
 
   if (cartData.length === 0) {
     return (
-      <div className="m-5 w-100 text-center">
-        <h3 className="fs-3">Your cart is empty!</h3>
+      <div className="gf-cart gf-cart--empty">
+        <h3>Your cart is empty</h3>
         <p>Add some delicious food to get started.</p>
       </div>
     );
@@ -53,57 +53,99 @@ export default function Cart() {
     }
   };
 
+  const handleChangeQuantity = (food, index, delta) => {
+    const currentQty = Number(food.qty) || 1;
+
+    if (delta < 0 && currentQty <= 1) {
+      dispatch({ type: 'REMOVE', index });
+      return;
+    }
+
+    const unitPrice = Number((food.price / currentQty).toFixed(2));
+    const priceDelta = Number((unitPrice * delta).toFixed(2));
+
+    dispatch({
+      type: 'UPDATE',
+      id: food.id,
+      qty: delta,
+      size: food.size,
+      price: priceDelta,
+    });
+  };
+
   const totalPrice = cartData.reduce((total, food) => total + food.price, 0);
 
   return (
-    <div>
+    <div className="gf-cart">
       {error && (
-        <div className="alert alert-danger m-3" role="alert">
+        <div className="alert alert-danger" role="alert">
           {error}
         </div>
       )}
 
-      <div className="container m-auto mt-5 table-responsive table-responsive-sm table-responsive-md">
-        <table className="table table-hover">
-          <thead className="text-success fs-4">
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Name</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Size</th>
-              <th scope="col">Amount</th>
-              <th scope="col">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {cartData.map((food, index) => (
-              <tr key={index}>
-                <th scope="row">{index + 1}</th>
-                <td>{food.name}</td>
-                <td>{food.qty}</td>
-                <td>{food.size}</td>
-                <td>₹{food.price}/-</td>
-                <td>
-                  <button
-                    type="button"
-                    className="btn btn-sm btn-danger p-0"
-                    onClick={() => dispatch({ type: 'REMOVE', index: index })}
-                    aria-label={`Remove ${food.name}`}
-                  >
-                    <Delete />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="gf-cart__list" aria-label="Items in your cart">
+        {cartData.map((food, index) => (
+          <article className="gf-cart__item" key={`${food.id || food.name}-${index}`}>
+            <div className="gf-cart__media">
+              {food.img ? (
+                <img src={food.img} alt={food.name} loading="lazy" />
+              ) : (
+                <div className="gf-cart__media-fallback" aria-hidden="true">
+                  GF
+                </div>
+              )}
+            </div>
 
-        <div className="mt-4">
-          <h3 className="fs-2">Total Price: ₹{totalPrice}/-</h3>
+            <div className="gf-cart__item-main">
+              <div className="gf-cart__item-title-wrap">
+                <h4 className="gf-cart__item-title">{food.name}</h4>
+                <span className="gf-cart__chip">{food.size}</span>
+              </div>
+              <p className="gf-cart__meta">Qty {food.qty} x {food.size}</p>
+            </div>
+
+            <div className="gf-cart__item-right">
+              <div className="gf-cart__qty-controls" aria-label={`Quantity controls for ${food.name}`}>
+                <button
+                  type="button"
+                  className="gf-cart__qty-btn"
+                  onClick={() => handleChangeQuantity(food, index, -1)}
+                  aria-label={`Decrease quantity of ${food.name}`}
+                >
+                  -
+                </button>
+                <span className="gf-cart__qty-value">{food.qty}</span>
+                <button
+                  type="button"
+                  className="gf-cart__qty-btn"
+                  onClick={() => handleChangeQuantity(food, index, 1)}
+                  aria-label={`Increase quantity of ${food.name}`}
+                >
+                  +
+                </button>
+              </div>
+
+              <strong className="gf-cart__price">₹{food.price}</strong>
+              <button
+                type="button"
+                className="gf-cart__remove"
+                onClick={() => dispatch({ type: 'REMOVE', index })}
+                aria-label={`Remove ${food.name}`}
+              >
+                <Delete fontSize="small" />
+              </button>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div className="gf-cart__summary">
+        <div>
+          <p className="gf-cart__summary-label">Total</p>
+          <h3 className="gf-cart__summary-total">₹{totalPrice}</h3>
         </div>
-
-        <button className="btn btn-success btn-lg mt-5" onClick={handleCheckOut} disabled={loading}>
-          {loading ? 'Processing...' : 'Check Out'}
+        <button className="gf-btn gf-btn--success gf-cart__checkout" onClick={handleCheckOut} disabled={loading}>
+          {loading ? 'Processing...' : 'Checkout'}
         </button>
       </div>
     </div>

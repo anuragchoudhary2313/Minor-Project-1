@@ -1,0 +1,526 @@
+.landing-root {
+  background:
+    radial-gradient(circle at 8% 18%, rgba(223, 89, 46, 0.16), transparent 34%),
+    radial-gradient(circle at 85% 4%, rgba(255, 206, 98, 0.16), transparent 32%),
+    linear-gradient(180deg, #150f0d 0%, #0f1319 100%);
+  color: #fff3ec;
+}
+
+.landing-container {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.landing-headline {
+  text-align: center;
+  margin-bottom: 42px;
+}
+
+.landing-headline h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: #ffd6ad;
+  font-weight: 800;
+}
+
+.landing-headline p {
+  margin: 12px auto 0;
+  max-width: 760px;
+  color: rgba(255, 233, 214, 0.84);
+  font-size: 1.05rem;
+}
+
+.landing-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 999px;
+  padding: 12px 30px;
+  text-decoration: none;
+  color: #2d0f0a;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffc14d 0%, #ff8d2f 100%);
+  box-shadow: 0 12px 28px rgba(255, 153, 71, 0.35);
+  transition: transform 0.25s ease;
+}
+
+.landing-cta:hover {
+  transform: translateY(-2px);
+  color: #2d0f0a;
+}
+
+.landing-hero {
+  position: relative;
+  min-height: 84vh;
+  display: flex;
+  align-items: center;
+  margin-top: 70px;
+  overflow: hidden;
+}
+
+.landing-hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.landing-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 9, 8, 0.38) 0%, rgba(15, 9, 8, 0.76) 100%);
+}
+
+.landing-hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  animation: landingRise 0.7s ease;
+}
+
+.landing-hero-content h1 {
+  margin: 18px auto 14px;
+  max-width: 760px;
+  font-size: clamp(2.1rem, 6vw, 4.6rem);
+  line-height: 1.05;
+  color: #fff6eb;
+  font-weight: 900;
+}
+
+.landing-hero-content p {
+  margin: 0 auto 24px;
+  max-width: 720px;
+  font-size: 1.1rem;
+  color: rgba(255, 239, 227, 0.9);
+}
+
+.landing-pill {
+  display: inline-flex;
+  background: rgba(255, 202, 146, 0.2);
+  border: 1px solid rgba(255, 205, 154, 0.5);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.landing-about,
+.landing-services,
+.landing-team,
+.landing-faq,
+.landing-menu,
+.landing-contact {
+  padding: 90px 0;
+}
+
+.landing-about {
+  background: rgba(36, 23, 19, 0.58);
+}
+
+.landing-about-media img {
+  width: 100%;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 222, 176, 0.2);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.32);
+}
+
+.landing-stats-grid {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.landing-stat-card {
+  border-radius: 18px;
+  padding: 20px;
+  text-align: center;
+  background: rgba(250, 170, 88, 0.1);
+  border: 1px solid rgba(255, 204, 144, 0.28);
+}
+
+.landing-stat-card h3 {
+  margin: 0;
+  color: #ffb255;
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.landing-stat-card p {
+  margin: 8px 0 0;
+  color: rgba(255, 232, 210, 0.92);
+}
+
+.landing-service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.landing-service-card {
+  background: rgba(21, 26, 32, 0.8);
+  border-radius: 22px;
+  border: 1px solid rgba(255, 226, 190, 0.15);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.landing-service-card:hover {
+  transform: translateY(-6px);
+}
+
+.landing-service-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.landing-service-card div {
+  padding: 18px;
+}
+
+.landing-service-card h3 {
+  margin: 0 0 8px;
+  color: #ffd4a5;
+}
+
+.landing-service-card p {
+  margin: 0;
+  color: rgba(255, 230, 205, 0.85);
+}
+
+.landing-team {
+  background: rgba(23, 16, 14, 0.72);
+}
+
+.landing-chef-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.landing-chef-card {
+  background: rgba(255, 184, 113, 0.08);
+  border: 1px solid rgba(255, 204, 143, 0.2);
+  border-radius: 18px;
+  text-align: center;
+  padding: 18px;
+}
+
+.landing-chef-card img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.landing-chef-card h3 {
+  margin: 14px 0 4px;
+  color: #ffd8b0;
+}
+
+.landing-chef-card p {
+  margin: 0;
+  color: rgba(255, 227, 204, 0.82);
+}
+
+.landing-faq-list {
+  max-width: 860px;
+  margin: 0 auto;
+  display: grid;
+  gap: 14px;
+}
+
+.landing-faq-item {
+  background: rgba(25, 31, 38, 0.78);
+  border: 1px solid rgba(255, 214, 165, 0.2);
+  border-radius: 14px;
+  padding: 14px 16px;
+}
+
+.landing-faq-item summary {
+  cursor: pointer;
+  color: #ffcc8d;
+  font-weight: 700;
+}
+
+.landing-faq-item p {
+  margin: 10px 0 0;
+  color: rgba(255, 229, 205, 0.9);
+}
+
+.landing-menu {
+  background: rgba(15, 19, 25, 0.62);
+}
+
+.landing-search-wrap {
+  max-width: 760px;
+  margin: 0 auto 34px;
+  display: flex;
+  gap: 10px;
+}
+
+.landing-search {
+  width: 100%;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 197, 121, 0.32);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff8f0;
+  padding: 14px 18px;
+  outline: none;
+}
+
+.landing-search::placeholder {
+  color: rgba(255, 228, 202, 0.7);
+}
+
+.landing-clear {
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 18px;
+  background: linear-gradient(135deg, #ff9d52 0%, #fb5f4a 100%);
+  color: #fff;
+  font-weight: 700;
+}
+
+.landing-category-block {
+  margin-bottom: 52px;
+}
+
+.landing-category-block h3 {
+  margin: 0 0 20px;
+  color: #ffd39b;
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+.landing-food-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 24px;
+}
+
+.landing-food-card {
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 201, 136, 0.22);
+  background:
+    radial-gradient(circle at 90% 10%, rgba(255, 196, 126, 0.16), transparent 46%),
+    linear-gradient(180deg, rgba(29, 21, 17, 0.92) 0%, rgba(17, 23, 32, 0.96) 100%);
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.36);
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+.landing-food-card:hover {
+  transform: translateY(-7px);
+  border-color: rgba(255, 194, 120, 0.52);
+  box-shadow: 0 28px 56px rgba(0, 0, 0, 0.44);
+}
+
+.landing-food-card__media {
+  position: relative;
+  height: 210px;
+  border-bottom: 1px solid rgba(255, 198, 130, 0.2);
+  background: #0f1218;
+}
+
+.landing-food-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.landing-food-card__badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 1;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  color: #4d1804;
+  background: linear-gradient(135deg, #ffd47d 0%, #ff9b48 100%);
+}
+
+.landing-food-card__body {
+  padding: 16px;
+}
+
+.landing-food-card__body h4 {
+  margin: 0;
+  color: #ffe0b9;
+  font-size: 1.45rem;
+  font-weight: 800;
+}
+
+.landing-food-card__subtitle {
+  margin: 6px 0 14px;
+  color: rgba(255, 229, 201, 0.8);
+  font-size: 0.92rem;
+}
+
+.landing-food-card__controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.landing-food-card__controls label {
+  display: grid;
+  gap: 6px;
+  color: #ffd5a5;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.landing-food-card__controls select {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 194, 116, 0.3);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff6ec;
+  padding: 10px;
+  font-weight: 600;
+}
+
+.landing-food-card__controls select:focus {
+  outline: 2px solid rgba(255, 177, 97, 0.44);
+  outline-offset: 1px;
+}
+
+.landing-food-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.landing-food-card__price {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #ffc470;
+}
+
+.landing-food-card__cta {
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 16px;
+  color: #3d1203;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffd17b 0%, #ff9445 100%);
+  box-shadow: 0 12px 24px rgba(255, 123, 57, 0.28);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.landing-food-card__cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 28px rgba(255, 123, 57, 0.34);
+}
+
+.landing-state-box {
+  text-align: center;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 216, 171, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 26px 20px;
+  color: #ffe5cb;
+}
+
+.landing-state-error p {
+  margin-bottom: 12px;
+}
+
+.landing-contact-box {
+  text-align: center;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 209, 141, 0.26);
+  background: linear-gradient(135deg, rgba(255, 184, 99, 0.15), rgba(64, 103, 180, 0.15));
+  padding: 52px 20px;
+}
+
+.landing-contact-box h2 {
+  margin: 0;
+  color: #ffd9ac;
+  font-size: clamp(1.8rem, 4vw, 2.9rem);
+}
+
+.landing-contact-box p {
+  margin: 10px auto 20px;
+  max-width: 720px;
+  color: rgba(255, 230, 207, 0.88);
+}
+
+@keyframes landingRise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .landing-stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .landing-service-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .landing-chef-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .landing-about,
+  .landing-services,
+  .landing-team,
+  .landing-faq,
+  .landing-menu,
+  .landing-contact {
+    padding: 68px 0;
+  }
+
+  .landing-hero {
+    min-height: 72vh;
+  }
+
+  .landing-search-wrap {
+    flex-direction: column;
+  }
+
+  .landing-food-card__controls {
+    grid-template-columns: 1fr;
+  }
+
+  .landing-food-card__footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .landing-food-card__cta {
+    width: 100%;
+  }
+
+  .landing-service-grid,
+  .landing-chef-grid,
+  .landing-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}

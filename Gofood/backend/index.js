@@ -1,10 +1,49 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const fs = require('fs');
+const path = require('path');
 const connectDB = require('./db');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const runtimeConfigPath = path.resolve(__dirname, '..', 'public', 'backend-runtime.json');
+
+const writeRuntimeConfig = (activePort) => {
+  if (process.env.NODE_ENV === 'production') {
+    return;
+  }
+
+  const runtimeConfig = {
+    apiBaseUrl: `http://localhost:${activePort}`,
+    updatedAt: new Date().toISOString(),
+  };
+
+  try {
+    fs.writeFileSync(runtimeConfigPath, JSON.stringify(runtimeConfig, null, 2));
+  } catch (error) {
+    console.warn(`⚠️  Unable to write runtime config: ${error.message}`);
+  }
+};
+
+const startServer = (preferredPort) => {
+  const numericPort = Number(preferredPort);
+  const server = app.listen(numericPort, () => {
+    writeRuntimeConfig(numericPort);
+    console.log(`\u{1F680} Server running on http://localhost:${numericPort}`);
+    console.log(`\u{1F310} Environment: ${process.env.NODE_ENV || 'development'}`);
+  });
+
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE' && process.env.NODE_ENV !== 'production') {
+      const fallbackPort = numericPort + 1;
+      console.warn(`\u26A0\uFE0F  Port ${numericPort} is in use. Retrying on ${fallbackPort}...`);
+      startServer(fallbackPort);
+      return;
+    }
+    throw err;
+  });
+};
 
 // Middleware
 // CORS: Allow frontend URLs and all Vercel preview deployments
@@ -30,7 +69,7 @@ const corsOptions = {
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization', 'auth-token', 'Origin', 'Accept']
 };
 
 app.use(cors(corsOptions));
@@ -91,10 +130,7 @@ const initializeApp = async () => {
     });
     
     // Start server
-    app.listen(PORT, () => {
-      console.log(`\u{1F680} Server running on http://localhost:${PORT}`);
-      console.log(`\u{1F310} Environment: ${process.env.NODE_ENV || 'development'}`);
-    });
+    startServer(PORT);
     
   } catch (error) {
     console.error('Failed to initialize app:', error);

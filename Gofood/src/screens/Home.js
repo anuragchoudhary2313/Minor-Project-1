@@ -3,6 +3,54 @@ import Card from '../components/Card';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import { API_ENDPOINTS, apiCall } from '../utils/api';
+import './HomeLanding.css';
+
+const stats = [
+  { value: '9+', label: 'Years of Experience' },
+  { value: '120+', label: 'Dishes in Our Menu' },
+  { value: '8.5K+', label: 'Customer Reviews' },
+  { value: '42K+', label: 'Happy Customers' },
+];
+
+const services = [
+  {
+    title: 'Fine Dine Experience',
+    description: 'Elevated flavors and chef-crafted dishes for special evenings and celebrations.',
+    image: '/landing/free-blog-1.png',
+  },
+  {
+    title: 'Fast Delivery',
+    description: 'Your favorites arrive hot and fresh with quick doorstep delivery in your area.',
+    image: '/landing/free-blog-2.png',
+  },
+  {
+    title: 'Private Events',
+    description: 'Host birthdays, meetings, and gatherings with custom menu planning and service.',
+    image: '/landing/free-blog-3.png',
+  },
+];
+
+const chefs = [
+  { name: 'Ethan Ward', role: 'Executive Chef', image: '/landing/chef-1.png' },
+  { name: 'Olivia Stone', role: 'Pastry Specialist', image: '/landing/chef-2.png' },
+  { name: 'Lucas Gray', role: 'Sous Chef', image: '/landing/chef-3.png' },
+  { name: 'Mia Foster', role: 'Kitchen Lead', image: '/landing/chef-4.png' },
+];
+
+const faqs = [
+  {
+    q: 'Do you offer table reservations?',
+    a: 'Yes. You can reserve your table in advance for lunch and dinner slots based on availability.',
+  },
+  {
+    q: 'Can I place custom food requests?',
+    a: 'Absolutely. Add your request while ordering and our team will do the best possible customization.',
+  },
+  {
+    q: 'Do you deliver late night orders?',
+    a: 'Delivery timing depends on your location. Most zones are available until 11 PM daily.',
+  },
+];
 
 export default function Home() {
   const [foodCat, setFoodCat] = useState([]);
@@ -36,274 +84,143 @@ export default function Home() {
     loadFoodItems();
   }, [loadFoodItems]);
 
-  if (loading) {
-    return (
-      <>
-        <Navbar />
-        <div
-          style={{
-            minHeight: '100vh',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            background:
-              'radial-gradient(circle at 20% 20%, rgba(34, 211, 238, 0.06), transparent 35%), radial-gradient(circle at 80% 0%, rgba(0,140,255,0.08), transparent 35%), linear-gradient(180deg, #04070b 0%, #07111a 100%)',
-          }}
-        >
-          <div
-            style={{
-              textAlign: 'center',
-              animation: 'pulse 2s infinite',
-            }}
-          >
-            <h2
-              style={{
-                background: 'linear-gradient(135deg, #00c2ff 0%, #0088ff 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                fontSize: '2rem',
-                fontWeight: '800',
-                marginBottom: '20px',
-              }}
-            >
-              🍔 Loading Delicious Food...
-            </h2>
-            <div
-              style={{
-                width: '50px',
-                height: '50px',
-                border: '5px solid rgba(0,140,255,0.24)',
-                borderTop: '5px solid #00c2ff',
-                borderRadius: '50%',
-                animation: 'spin 1s linear infinite',
-                margin: '0 auto',
-              }}
-            ></div>
-          </div>
-        </div>
-      </>
-    );
-  }
-
-  if (error) {
-    return (
-      <>
-        <Navbar />
-        <div
-          style={{
-            minHeight: '100vh',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            background:
-              'radial-gradient(circle at 20% 20%, rgba(34, 211, 238, 0.06), transparent 35%), radial-gradient(circle at 80% 0%, rgba(0,140,255,0.08), transparent 35%), linear-gradient(180deg, #04070b 0%, #07111a 100%)',
-            padding: '20px',
-          }}
-        >
-          <div
-            style={{
-              background: 'rgba(238, 9, 121, 0.2)',
-              border: '1px solid rgba(238, 9, 121, 0.5)',
-              borderRadius: '20px',
-              padding: '40px',
-              maxWidth: '500px',
-              textAlign: 'center',
-            }}
-          >
-            <h3 style={{ color: '#ff6a00', marginBottom: '20px' }}>{error}</h3>
-            <button
-              style={{
-                background: 'linear-gradient(135deg, #00c2ff 0%, #0088ff 100%)',
-                border: 'none',
-                borderRadius: '50px',
-                padding: '15px 40px',
-                color: 'white',
-                fontWeight: '600',
-                cursor: 'pointer',
-              }}
-              onClick={loadFoodItems}
-            >
-              Retry
-            </button>
-          </div>
-        </div>
-        <Footer />
-      </>
-    );
-  }
-
   return (
-    <div
-      style={{
-        background: 'linear-gradient(180deg, #04070b 0%, #07111a 100%)',
-        minHeight: '100vh',
-      }}
-    >
+    <div className="landing-root">
       <Navbar />
 
-      {/* Modern Hero Section */}
-      <div
-        style={{
-          position: 'relative',
-          height: '60vh',
-          minHeight: '500px',
-          overflow: 'hidden',
-          marginTop: '70px',
-        }}
-      >
-        <div
-          id="carouselExampleFade"
-          className="carousel slide carousel-fade"
-          data-bs-ride="carousel"
-          style={{ height: '100%' }}
-        >
-          <div className="carousel-inner" style={{ height: '100%' }}>
-            <div className="carousel-item active" style={{ height: '100%' }}>
-              <img
-                src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1200"
-                className="d-block w-100"
-                style={{
-                  height: '100%',
-                  objectFit: 'cover',
-                  filter: 'brightness(40%)',
-                }}
-                alt="Pizza"
-              />
-            </div>
-            <div className="carousel-item" style={{ height: '100%' }}>
-              <img
-                src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=1200"
-                className="d-block w-100"
-                style={{
-                  height: '100%',
-                  objectFit: 'cover',
-                  filter: 'brightness(40%)',
-                }}
-                alt="Biryani"
-              />
-            </div>
-            <div className="carousel-item" style={{ height: '100%' }}>
-              <img
-                src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200"
-                className="d-block w-100"
-                style={{
-                  height: '100%',
-                  objectFit: 'cover',
-                  filter: 'brightness(40%)',
-                }}
-                alt="Food"
-              />
-            </div>
-          </div>
-
-          {/* Hero Content */}
-          <div
-            style={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              zIndex: '10',
-              width: '90%',
-              maxWidth: '800px',
-              textAlign: 'center',
-            }}
-          >
-            <h1
-              style={{
-                fontSize: 'clamp(2rem, 5vw, 4rem)',
-                fontWeight: '800',
-                background: 'linear-gradient(135deg, #00c2ff 0%, #0088ff 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                marginBottom: '20px',
-                animation: 'fadeInUp 0.8s ease-out',
-              }}
-            >
-              🍔 GoFood Delights
-            </h1>
-            <p
-              style={{
-                color: '#e0e0e0',
-                fontSize: 'clamp(1rem, 2vw, 1.5rem)',
-                marginBottom: '30px',
-                animation: 'fadeInUp 1s ease-out',
-              }}
-            >
-              Order your favorite food with just a few clicks!
-            </p>
-
-            {/* Modern Search Bar */}
-            <div
-              style={{
-                display: 'flex',
-                gap: '10px',
-                maxWidth: '600px',
-                margin: '0 auto',
-                animation: 'fadeInUp 1.2s ease-out',
-              }}
-            >
-              <input
-                style={{
-                  flex: 1,
-                  background: 'rgba(255, 255, 255, 0.04)',
-                  backdropFilter: 'blur(10px)',
-                  border: '1px solid rgba(0,140,255,0.18)',
-                  borderRadius: '50px',
-                  padding: '15px 25px',
-                  color: '#fff',
-                  fontSize: '1.1rem',
-                  outline: 'none',
-                }}
-                type="search"
-                placeholder="🔍 Search your favorite food..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                onFocus={(e) => (e.target.style.borderColor = '#00c2ff')}
-                onBlur={(e) => (e.target.style.borderColor = 'rgba(0,140,255,0.18)')}
-              />
-              {search && (
-                <button
-                  style={{
-                    background: 'linear-gradient(135deg, #ff8a00 0%, #ff4d4d 100%)',
-                    border: 'none',
-                    borderRadius: '50px',
-                    padding: '15px 30px',
-                    color: 'white',
-                    fontWeight: '700',
-                    cursor: 'pointer',
-                  }}
-                  onClick={() => setSearch('')}
-                >
-                  ✕ Clear
-                </button>
-              )}
-            </div>
-          </div>
-
-          <button
-            className="carousel-control-prev"
-            type="button"
-            data-bs-target="#carouselExampleFade"
-            data-bs-slide="prev"
-          >
-            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-          </button>
-          <button
-            className="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselExampleFade"
-            data-bs-slide="next"
-          >
-            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-          </button>
+      <section className="landing-hero" id="home">
+        <div className="landing-hero-overlay" />
+        <img src="/landing/dishes-hero.png" alt="Restaurant dishes" className="landing-hero-image" />
+        <div className="landing-container landing-hero-content">
+          <span className="landing-pill">Serving Food Lovers Since 2016</span>
+          <h1>Savor Every Bite. Savor Every Moment.</h1>
+          <p>
+            Welcome to a dining experience where flavor, freshness, and hospitality come together.
+            Every plate is made to impress.
+          </p>
+          <a href="#menu" className="landing-cta">
+            Explore Menu
+          </a>
         </div>
-      </div>
+      </section>
 
-      {/* Food Items Section */}
-      <div style={{ padding: '60px 20px' }}>
-        <div className="container">
-          {foodCat.length > 0 ? (
+      <section className="landing-about" id="about-us">
+        <div className="landing-container">
+          <div className="landing-headline">
+            <h2>About Us</h2>
+            <p>
+              Our achievement story stands as a testament to teamwork and perseverance. We have
+              faced challenges, celebrated victories, and created a consistent dining standard.
+            </p>
+          </div>
+
+          <div className="landing-about-media">
+            <img src="/landing/restaurant-about-us.png" alt="Restaurant interior" />
+          </div>
+
+          <div className="landing-stats-grid">
+            {stats.map((item) => (
+              <div key={item.label} className="landing-stat-card">
+                <h3>{item.value}</h3>
+                <p>{item.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="landing-services" id="services">
+        <div className="landing-container">
+          <div className="landing-headline">
+            <h2>Crafting Moments, Serving You</h2>
+            <p>
+              From unforgettable flavors to seamless service, we are here to make every meal feel
+              special.
+            </p>
+          </div>
+          <div className="landing-service-grid">
+            {services.map((service) => (
+              <article key={service.title} className="landing-service-card">
+                <img src={service.image} alt={service.title} />
+                <div>
+                  <h3>{service.title}</h3>
+                  <p>{service.description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="landing-team" id="team">
+        <div className="landing-container">
+          <div className="landing-headline">
+            <h2>Meet Our Team</h2>
+            <p>The experts behind every delicious experience.</p>
+          </div>
+          <div className="landing-chef-grid">
+            {chefs.map((chef) => (
+              <article key={chef.name} className="landing-chef-card">
+                <img src={chef.image} alt={chef.name} />
+                <h3>{chef.name}</h3>
+                <p>{chef.role}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="landing-faq" id="faqs">
+        <div className="landing-container">
+          <div className="landing-headline">
+            <h2>Frequently Asked Questions</h2>
+            <p>Quick answers to common questions about your dining and ordering experience.</p>
+          </div>
+          <div className="landing-faq-list">
+            {faqs.map((item) => (
+              <details key={item.q} className="landing-faq-item">
+                <summary>{item.q}</summary>
+                <p>{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="landing-menu" id="menu">
+        <div className="landing-container">
+          <div className="landing-headline">
+            <h2>Order From Our Menu</h2>
+            <p>Search and discover your favorite dishes.</p>
+          </div>
+
+          <div className="landing-search-wrap">
+            <input
+              className="landing-search"
+              type="search"
+              placeholder="Search your favorite food"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            {search && (
+              <button className="landing-clear" onClick={() => setSearch('')}>
+                Clear
+              </button>
+            )}
+          </div>
+
+          {loading && <div className="landing-state-box">Loading delicious food...</div>}
+
+          {error && (
+            <div className="landing-state-box landing-state-error">
+              <p>{error}</p>
+              <button className="landing-cta" onClick={loadFoodItems}>
+                Retry
+              </button>
+            </div>
+          )}
+
+          {!loading && !error && foodCat.length > 0 &&
             foodCat.map((category) => {
               const filteredItems = foodItems.filter(
                 (item) =>
@@ -311,97 +228,43 @@ export default function Home() {
                   item.name.toLowerCase().includes(search.toLowerCase())
               );
 
-              if (filteredItems.length === 0 && search) return null;
+              if (filteredItems.length === 0 && search) {
+                return null;
+              }
 
               return (
-                <div key={category._id || category.CategoryName} style={{ marginBottom: '60px' }}>
-                  <h2
-                    style={{
-                      fontSize: '2.5rem',
-                      fontWeight: '800',
-                      background: 'linear-gradient(135deg, #00c2ff 0%, #0088ff 100%)',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      marginBottom: '20px',
-                      animation: 'slideInLeft 0.6s ease-out',
-                    }}
-                  >
-                    {category.CategoryName === 'Biryani' && '🍚 '}
-                    {category.CategoryName === 'Pizza' && '🍕 '}
-                    {category.CategoryName === 'Starter' && '🥗 '}
-                    {category.CategoryName === 'Dessert' && '🍰 '}
-                    {category.CategoryName}
-                  </h2>
-                  <div
-                    style={{
-                      height: '4px',
-                      background: 'linear-gradient(90deg, #00c2ff 0%, transparent 100%)',
-                      marginBottom: '30px',
-                      borderRadius: '10px',
-                    }}
-                  />
-                  {filteredItems.length > 0 ? (
-                    <div
-                      style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-                        gap: '30px',
-                        justifyItems: 'center',
-                      }}
-                    >
-                      {filteredItems.map((item) => (
-                        <div key={item._id} style={{ animation: 'fadeInUp 0.6s ease-out' }}>
-                          <Card
-                            foodName={item.name}
-                            item={item}
-                            options={item.options[0]}
-                            ImgSrc={item.img}
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div
-                      style={{
-                        textAlign: 'center',
-                        padding: '40px',
-                        background: 'rgba(255, 255, 255, 0.05)',
-                        borderRadius: '20px',
-                        border: '1px solid rgba(0,140,255,0.18)',
-                      }}
-                    >
-                      <p style={{ color: '#e0e0e0', fontSize: '1.2rem' }}>No items found</p>
-                    </div>
-                  )}
+                <div key={category._id || category.CategoryName} className="landing-category-block">
+                  <h3>{category.CategoryName}</h3>
+                  <div className="landing-food-grid">
+                    {filteredItems.map((item) => (
+                      <Card
+                        key={item._id}
+                        foodName={item.name}
+                        item={item}
+                        options={item.options[0]}
+                        ImgSrc={item.img}
+                      />
+                    ))}
+                  </div>
                 </div>
               );
-            })
-          ) : (
-            <div
-              style={{
-                textAlign: 'center',
-                padding: '60px 20px',
-                background: 'rgba(255, 255, 255, 0.05)',
-                borderRadius: '20px',
-                border: '1px solid rgba(0,140,255,0.18)',
-              }}
-            >
-              <h3
-                style={{
-                  color: '#00c2ff',
-                  fontSize: '1.5rem',
-                  marginBottom: '15px',
-                }}
-              >
-                No categories available
-              </h3>
-              <p style={{ color: '#e0e0e0' }}>
-                Please check back later for delicious food options!
-              </p>
-            </div>
+            })}
+
+          {!loading && !error && foodCat.length === 0 && (
+            <div className="landing-state-box">No categories available right now.</div>
           )}
         </div>
-      </div>
+      </section>
+
+      <section className="landing-contact" id="contact-us">
+        <div className="landing-container landing-contact-box">
+          <h2>Ready to Reserve Your Table?</h2>
+          <p>Enjoy handcrafted meals and warm hospitality in a cozy atmosphere.</p>
+          <a href="#menu" className="landing-cta">
+            Book A Table
+          </a>
+        </div>
+      </section>
 
       <Footer />
     </div>
