@@ -1,6 +1,0 @@
-{
-  "version": 2,
-  "buildCommand": "cd Gofood && npm install --legacy-peer-deps && npm run build",
-  "framework": "create-react-app",
-  "outputDirectory": "Gofood/build"
-}
