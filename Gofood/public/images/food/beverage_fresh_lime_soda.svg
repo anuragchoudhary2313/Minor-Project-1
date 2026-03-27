@@ -1,0 +1,26 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="90" x2="1060" y2="710" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F3FFD9"/>
+      <stop offset="1" stop-color="#CBF58A"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="600" y1="220" x2="600" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FDFEFE" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#DBF4F5" stop-opacity="0.9"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <circle cx="600" cy="400" r="250" fill="#FFFFFF" fill-opacity="0.35"/>
+  <path d="M510 190H690L660 630C656 669 632 690 600 690C568 690 544 669 540 630L510 190Z" fill="url(#glass)"/>
+  <path d="M534 390C574 372 618 368 666 380L648 614C646 638 627 654 600 654C573 654 554 638 552 614L534 390Z" fill="#D7FA65" fill-opacity="0.9"/>
+  <circle cx="725" cy="336" r="68" fill="#A7D832"/>
+  <circle cx="725" cy="336" r="49" fill="#E7FF8B"/>
+  <path d="M710 290C738 320 749 353 744 393" stroke="#5A8E18" stroke-width="8" stroke-linecap="round"/>
+  <path d="M610 220L718 112" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="586" cy="298" r="10" fill="#FFFFFF" fill-opacity="0.7"/>
+  <circle cx="620" cy="348" r="12" fill="#FFFFFF" fill-opacity="0.65"/>
+  <circle cx="576" cy="418" r="9" fill="#FFFFFF" fill-opacity="0.65"/>
+  <circle cx="632" cy="468" r="11" fill="#FFFFFF" fill-opacity="0.6"/>
+  <text x="600" y="104" fill="#46631A" font-family="Verdana, Arial, sans-serif" font-size="44" font-weight="700" text-anchor="middle">FRESH LIME SODA</text>
+  <text x="600" y="742" fill="#5A7A24" font-family="Verdana, Arial, sans-serif" font-size="28" text-anchor="middle">Bright citrus soda with lime slices and chilled fizz</text>
+</svg>

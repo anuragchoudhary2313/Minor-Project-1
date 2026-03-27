@@ -27,3 +27,6 @@ yarn-error.log*
 start-log.txt
 trace-log.txt
 backend/start-diag.js
+
+# runtime config
+public/backend-runtime.json

@@ -11,6 +11,11 @@ export default function Card(props) {
 
   const { options, item: foodItem } = props;
   const priceOptions = Object.keys(options);
+  const isWaterItem = foodItem.img && foodItem.img.includes('beverage_water_bottle');
+  const fallbackImage =
+    isWaterItem
+      ? '/images/food/beverage_water_bottle.jpg'
+      : 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&auto=format';
   
   const [qty, setQty] = useState(1);
   const [size, setSize] = useState('');
@@ -72,19 +77,28 @@ export default function Card(props) {
       style={{ rotateX, rotateY }}
     >
       <div className="card h-100 shadow-elite border-0" style={{ background: 'var(--color-surface)' }}>
-        <div className="card__image-wrap" style={{ perspective: '1000px' }}>
+        <div
+          className="card__image-wrap"
+          style={{
+            perspective: '1000px',
+            background: isWaterItem ? 'linear-gradient(180deg, #e8f8ff 0%, #cfeeff 100%)' : undefined
+          }}
+        >
           <motion.img 
             src={foodItem.img} 
             className="card__image" 
             alt={foodItem.name} 
             onError={(e) => {
               e.target.onerror = null;
-              e.target.src = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&auto=format'; // Universal Food Fallback
+              e.target.src = fallbackImage;
             }}
             style={{ 
               x: useTransform(x, [-100, 100], [5, -5]), 
               y: useTransform(y, [-100, 100], [5, -5]),
-              scale: 1.1
+              scale: isWaterItem ? 0.94 : 1.1,
+              objectFit: isWaterItem ? 'contain' : 'cover',
+              objectPosition: isWaterItem ? 'center center' : 'center',
+              padding: isWaterItem ? '10px 20px 0' : 0
             }}
           />
           <div className="card__badge">

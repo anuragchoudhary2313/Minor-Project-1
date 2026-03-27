@@ -1,0 +1,28 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="160" y1="100" x2="1040" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E9F7FF"/>
+      <stop offset="1" stop-color="#B8E4FF"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="220" x2="0" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#D6EEF9" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="label" x1="465" y1="452" x2="735" y2="530" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2A8CFF"/>
+      <stop offset="1" stop-color="#0D57D9"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <circle cx="600" cy="400" r="250" fill="#FFFFFF" fill-opacity="0.35"/>
+  <path d="M562 160H638C648 160 656 168 656 178V210C656 219 651 227 643 232L626 242V266C626 276 632 286 642 292C695 324 742 420 742 548C742 626 679 690 600 690C521 690 458 626 458 548C458 420 505 324 558 292C568 286 574 276 574 266V242L557 232C549 227 544 219 544 210V178C544 168 552 160 562 160Z" fill="url(#glass)"/>
+  <path d="M568 172H632V206H568V172Z" fill="#1677E6"/>
+  <path d="M468 506C516 482 562 470 600 470C638 470 684 482 732 506V582C732 642 674 682 600 682C526 682 468 642 468 582V506Z" fill="#7DCCFF" fill-opacity="0.82"/>
+  <rect x="462" y="430" width="276" height="104" rx="26" fill="url(#label)"/>
+  <path d="M462 480C518 450 574 438 628 444C670 448 706 462 738 486V534H462V480Z" fill="#A8E4FF" fill-opacity="0.75"/>
+  <text x="600" y="494" fill="#FFFFFF" font-family="Verdana, Arial, sans-serif" font-size="60" font-weight="700" text-anchor="middle">water</text>
+  <text x="600" y="126" fill="#1B4C7A" font-family="Verdana, Arial, sans-serif" font-size="42" font-weight="700" text-anchor="middle">WATER (1L)</text>
+  <text x="600" y="742" fill="#34668C" font-family="Verdana, Arial, sans-serif" font-size="28" text-anchor="middle">Chilled bottled water with a clean blue label</text>
+  <ellipse cx="548" cy="282" rx="18" ry="52" fill="#FFFFFF" fill-opacity="0.38"/>
+  <ellipse cx="634" cy="372" rx="12" ry="36" fill="#FFFFFF" fill-opacity="0.3"/>
+</svg>

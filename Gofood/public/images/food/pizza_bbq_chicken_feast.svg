@@ -1,0 +1,29 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="80" x2="1080" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2D160F"/>
+      <stop offset="1" stop-color="#6B2D1A"/>
+    </linearGradient>
+    <radialGradient id="pizza" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(600 410) rotate(90) scale(250 250)">
+      <stop stop-color="#F7D37A"/>
+      <stop offset="1" stop-color="#D79239"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <circle cx="600" cy="400" r="280" fill="#1B0D08"/>
+  <circle cx="600" cy="400" r="248" fill="url(#pizza)" stroke="#A95B1E" stroke-width="14"/>
+  <circle cx="488" cy="350" r="34" fill="#7E1F18"/>
+  <circle cx="700" cy="320" r="34" fill="#7E1F18"/>
+  <circle cx="758" cy="470" r="34" fill="#7E1F18"/>
+  <circle cx="552" cy="524" r="34" fill="#7E1F18"/>
+  <circle cx="430" cy="454" r="34" fill="#7E1F18"/>
+  <path d="M470 278C515 298 555 315 610 336" stroke="#F1E2B8" stroke-width="18" stroke-linecap="round"/>
+  <path d="M540 484C606 432 672 402 732 374" stroke="#F1E2B8" stroke-width="18" stroke-linecap="round"/>
+  <path d="M418 384C476 418 522 435 586 458" stroke="#F1E2B8" stroke-width="18" stroke-linecap="round"/>
+  <path d="M666 506C702 476 736 446 784 412" stroke="#F1E2B8" stroke-width="18" stroke-linecap="round"/>
+  <path d="M505 286C528 312 540 330 548 356" stroke="#7BC96F" stroke-width="10" stroke-linecap="round"/>
+  <path d="M684 278C666 304 652 326 642 354" stroke="#7BC96F" stroke-width="10" stroke-linecap="round"/>
+  <path d="M754 432C724 424 700 422 674 424" stroke="#7BC96F" stroke-width="10" stroke-linecap="round"/>
+  <text x="600" y="122" fill="#F7E7C8" font-family="Verdana, Arial, sans-serif" font-size="44" font-weight="700" text-anchor="middle">BBQ CHICKEN FEAST</text>
+  <text x="600" y="702" fill="#F1D8B0" font-family="Verdana, Arial, sans-serif" font-size="28" text-anchor="middle">Smoky chicken pizza with charred onions and melty cheese</text>
+</svg>

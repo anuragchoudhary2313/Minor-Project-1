@@ -12,6 +12,25 @@ require('dotenv').config();
 const jwtSecret = process.env.JWT_SECRET || 'your_fallback_secret_change_this';
 const OPENCAGE_API_KEY = process.env.OPENCAGE_API_KEY;
 const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000';
+const IMAGE_OVERRIDES = {
+    'Water (1L)': '/images/food/beverage_water_bottle.jpg',
+    'Fresh Lime Soda': '/images/food/beverage_fresh_lime_soda.svg',
+    'Cold Coffee': '/images/food/beverage_cold_coffee.svg',
+    'Hot Chocolate': '/images/food/beverage_hot_chocolate.svg',
+    'Ginger Tea': '/images/food/beverage_ginger_tea.svg'
+};
+
+const normalizeFoodItem = (item) => {
+    if (!item || typeof item !== 'object') {
+        return item;
+    }
+
+    if (item.name && IMAGE_OVERRIDES[item.name]) {
+        return { ...item, img: IMAGE_OVERRIDES[item.name] };
+    }
+
+    return item;
+};
 
 // ============================================
 // USER AUTHENTICATION ROUTES
@@ -231,7 +250,7 @@ router.post('/foodData', async (req, res) => {
         
         res.json({
             success: true,
-            data: [global.foodData, global.foodCategory]
+            data: [global.foodData.map(normalizeFoodItem), global.foodCategory]
         });
     } catch (error) {
         console.error('Food data error:', error.message);

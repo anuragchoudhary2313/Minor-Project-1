@@ -1,0 +1,21 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="140" y1="90" x2="1080" y2="710" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4D271C"/>
+      <stop offset="1" stop-color="#B06030"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <circle cx="600" cy="400" r="250" fill="#FFFFFF" fill-opacity="0.16"/>
+  <path d="M430 316C430 268 469 230 517 230H654C715 230 764 279 764 340V466C764 527 715 576 654 576H517C469 576 430 538 430 490V316Z" fill="#F8E6D6"/>
+  <path d="M516 292H648C690 292 724 326 724 368V446C724 488 690 522 648 522H516C495 522 478 505 478 484V330C478 309 495 292 516 292Z" fill="#7B4326"/>
+  <path d="M764 334H800C837 334 868 365 868 402C868 439 837 470 800 470H764" stroke="#F8E6D6" stroke-width="28" stroke-linecap="round"/>
+  <circle cx="560" cy="284" r="26" fill="#FFF5ED"/>
+  <circle cx="607" cy="274" r="24" fill="#FFF5ED"/>
+  <circle cx="651" cy="288" r="24" fill="#FFF5ED"/>
+  <path d="M552 188C544 162 548 138 566 118" stroke="#F8D6B9" stroke-width="10" stroke-linecap="round"/>
+  <path d="M606 176C596 148 600 124 620 102" stroke="#F8D6B9" stroke-width="10" stroke-linecap="round"/>
+  <path d="M662 194C654 166 660 142 680 122" stroke="#F8D6B9" stroke-width="10" stroke-linecap="round"/>
+  <text x="600" y="104" fill="#FFE3CF" font-family="Verdana, Arial, sans-serif" font-size="44" font-weight="700" text-anchor="middle">HOT CHOCOLATE</text>
+  <text x="600" y="742" fill="#FFD6BA" font-family="Verdana, Arial, sans-serif" font-size="28" text-anchor="middle">Warm cocoa topped with soft marshmallows</text>
+</svg>

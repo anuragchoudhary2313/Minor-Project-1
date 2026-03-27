@@ -1,0 +1,29 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="100" x2="1100" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#113327"/>
+      <stop offset="1" stop-color="#325C2F"/>
+    </linearGradient>
+    <radialGradient id="plate" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(600 412) rotate(90) scale(240 300)">
+      <stop stop-color="#F9FAF7"/>
+      <stop offset="1" stop-color="#D9E2D3"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <ellipse cx="600" cy="420" rx="320" ry="220" fill="#0D231A"/>
+  <ellipse cx="600" cy="404" rx="282" ry="184" fill="url(#plate)"/>
+  <path d="M438 396C486 338 555 316 606 354C664 396 722 394 760 338" stroke="#86B94A" stroke-width="24" stroke-linecap="round"/>
+  <path d="M446 462C496 406 560 388 616 420C664 448 716 452 754 410" stroke="#86B94A" stroke-width="24" stroke-linecap="round"/>
+  <path d="M470 350C518 404 552 434 600 470C644 502 682 504 726 472" stroke="#E9D298" stroke-width="22" stroke-linecap="round"/>
+  <path d="M424 432C474 466 512 496 564 518C630 544 704 534 770 470" stroke="#E9D298" stroke-width="22" stroke-linecap="round"/>
+  <circle cx="510" cy="332" r="10" fill="#2F6F34"/>
+  <circle cx="670" cy="330" r="10" fill="#2F6F34"/>
+  <circle cx="734" cy="400" r="10" fill="#2F6F34"/>
+  <circle cx="634" cy="522" r="10" fill="#2F6F34"/>
+  <circle cx="486" cy="462" r="10" fill="#2F6F34"/>
+  <circle cx="560" cy="398" r="8" fill="#F6F0CF"/>
+  <circle cx="710" cy="458" r="8" fill="#F6F0CF"/>
+  <circle cx="614" cy="346" r="8" fill="#F6F0CF"/>
+  <text x="600" y="122" fill="#EEF3DD" font-family="Verdana, Arial, sans-serif" font-size="44" font-weight="700" text-anchor="middle">PESTO PASTA</text>
+  <text x="600" y="702" fill="#DCE8C5" font-family="Verdana, Arial, sans-serif" font-size="28" text-anchor="middle">Basil pesto pasta with herbs, nuts, and olive notes</text>
+</svg>

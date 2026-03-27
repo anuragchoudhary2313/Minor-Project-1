@@ -1,0 +1,27 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="160" y1="80" x2="1040" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4C1D13"/>
+      <stop offset="1" stop-color="#A84A1F"/>
+    </linearGradient>
+    <radialGradient id="bowl" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(600 422) rotate(90) scale(210 278)">
+      <stop stop-color="#FFF4E8"/>
+      <stop offset="1" stop-color="#DCC9BA"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <ellipse cx="600" cy="446" rx="306" ry="206" fill="#5F2714"/>
+  <path d="M354 388C354 538 460 622 600 622C740 622 846 538 846 388H354Z" fill="url(#bowl)"/>
+  <path d="M394 388C394 328 484 274 600 274C716 274 806 328 806 388H394Z" fill="#F07B2D"/>
+  <path d="M438 382C490 336 544 324 594 346C652 372 706 374 762 336" stroke="#D65C1F" stroke-width="30" stroke-linecap="round"/>
+  <path d="M444 430C500 386 558 374 616 396C664 414 714 418 756 392" stroke="#D65C1F" stroke-width="30" stroke-linecap="round"/>
+  <path d="M470 474C522 438 578 432 632 454C676 472 718 474 746 456" stroke="#D65C1F" stroke-width="30" stroke-linecap="round"/>
+  <ellipse cx="520" cy="342" rx="12" ry="18" fill="#F4E3A5"/>
+  <ellipse cx="612" cy="326" rx="12" ry="18" fill="#F4E3A5"/>
+  <ellipse cx="696" cy="350" rx="12" ry="18" fill="#F4E3A5"/>
+  <circle cx="562" cy="364" r="7" fill="#A6C95A"/>
+  <circle cx="658" cy="388" r="7" fill="#A6C95A"/>
+  <circle cx="724" cy="432" r="7" fill="#A6C95A"/>
+  <text x="600" y="122" fill="#FFEBD3" font-family="Verdana, Arial, sans-serif" font-size="44" font-weight="700" text-anchor="middle">GAJAR KA HALWA</text>
+  <text x="600" y="702" fill="#FBD7B1" font-family="Verdana, Arial, sans-serif" font-size="28" text-anchor="middle">Slow-cooked carrot halwa topped with pistachio and nuts</text>
+</svg>
