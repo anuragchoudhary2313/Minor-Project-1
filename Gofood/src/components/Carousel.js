@@ -2,71 +2,41 @@ import React from 'react';
 
 export default function Carousel() {
   return (
-    <div>
-      <div
-        id="carouselExampleFade"
-        className="carousel slide carousel-fade "
-        data-bs-ride="carousel"
-      >
-        <div className="carousel-inner " id="carousel">
-          <div className=" carousel-caption  " style={{ zIndex: '9' }}>
-            <form className=" d-flex justify-content-center">
-              {' '}
-              {/* justify-content-center, copy this <form> from navbar for search box */}
+    <div style={{ padding: 'var(--space-2xl) 0', backgroundColor: 'var(--color-background)' }}>
+      <div className="container position-relative">
+        <div 
+          style={{
+            background: 'url(https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop) center/cover',
+            borderRadius: '24px',
+            overflow: 'hidden',
+            boxShadow: 'var(--shadow-xl)',
+            height: '500px',
+            position: 'relative'
+          }}
+        >
+          {/* Overlay */}
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(30, 64, 175, 0.9) 0%, rgba(30, 64, 175, 0.4) 100%)' }}></div>
+          
+          <div className="position-absolute top-50 start-0 translate-middle-y text-white" style={{ padding: '0 5%' }}>
+            <h1 className="hero-title" style={{ color: '#fff' }}>Discover Delicious Food<br/> Delivered Fast.</h1>
+            <p style={{ fontSize: '1.2rem', marginBottom: '32px', maxWidth: '600px' }}>
+              Order your favorite meals from top-rated restaurants near you. Fast delivery, fresh food.
+            </p>
+            
+            <form className="d-flex" onSubmit={(e) => e.preventDefault()} style={{ maxWidth: '400px', gap: '8px' }}>
               <input
-                className="form-control me-2 w-75 bg-white text-dark"
+                className="input"
                 type="search"
-                placeholder="Type in..."
+                placeholder="Search for restaurants or dishes..."
                 aria-label="Search"
+                style={{ marginBottom: 0 }}
               />
-              <button className="btn text-white bg-success" type="submit">
+              <button className="btn-primary" type="submit" style={{ flexShrink: 0 }}>
                 Search
               </button>
             </form>
           </div>
-          <div className="carousel-item active">
-            <img
-              src="https://source.unsplash.com/random/900x700/?burger"
-              className="d-block w-100  "
-              style={{ filter: 'brightness(30%)' }}
-              alt="..."
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              src="https://source.unsplash.com/random/900x700/?pastry"
-              className="d-block w-100 "
-              style={{ filter: 'brightness(30%)' }}
-              alt="..."
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              src="https://source.unsplash.com/random/900x700/?barbeque"
-              className="d-block w-100 "
-              style={{ filter: 'brightness(30%)' }}
-              alt="..."
-            />
-          </div>
         </div>
-        <button
-          className="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleFade"
-          data-bs-slide="prev"
-        >
-          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span className="visually-hidden">Previous</span>
-        </button>
-        <button
-          className="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleFade"
-          data-bs-slide="next"
-        >
-          <span className="carousel-control-next-icon" aria-hidden="true"></span>
-          <span className="visually-hidden">Next</span>
-        </button>
       </div>
     </div>
   );

@@ -11,9 +11,11 @@ export default function Cart() {
 
   if (cartData.length === 0) {
     return (
-      <div className="gf-cart gf-cart--empty">
-        <h3>Your cart is empty</h3>
-        <p>Add some delicious food to get started.</p>
+      <div style={{ minHeight: '60vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'var(--color-background)', padding: 'var(--space-xl)' }}>
+        <div style={{ background: '#fff', padding: '48px', borderRadius: '24px', textAlign: 'center', boxShadow: 'var(--shadow-md)', maxWidth: '500px', width: '100%' }}>
+          <h3 style={{ fontFamily: 'Playfair Display SC', color: 'var(--color-primary)', fontWeight: 800, marginBottom: '16px' }}>Your cart is empty</h3>
+          <p style={{ color: 'var(--color-text)', opacity: 0.8, fontSize: '1.1rem' }}>Add some delicious food to get started.</p>
+        </div>
       </div>
     );
   }
@@ -24,8 +26,9 @@ export default function Cart() {
 
     try {
       const userEmail = localStorage.getItem('userEmail');
+      const token = localStorage.getItem('token');
 
-      if (!userEmail) {
+      if (!token) {
         setError('Please login first');
         return;
       }
@@ -34,7 +37,7 @@ export default function Cart() {
         method: 'POST',
         body: JSON.stringify({
           order_data: cartData,
-          email: userEmail,
+          email: userEmail || `guest-${token.slice(0, 8)}@gofood.com`,
           order_date: new Date().toDateString(),
         }),
       });
@@ -76,77 +79,61 @@ export default function Cart() {
   const totalPrice = cartData.reduce((total, food) => total + food.price, 0);
 
   return (
-    <div className="gf-cart">
-      {error && (
-        <div className="alert alert-danger" role="alert">
-          {error}
-        </div>
-      )}
+    <div style={{ minHeight: '100vh', background: 'var(--color-background)', padding: 'var(--space-2xl) var(--space-md)' }}>
+      <div style={{ maxWidth: '900px', margin: '0 auto', background: '#fff', borderRadius: '24px', padding: '32px', boxShadow: 'var(--shadow-xl)' }}>
+        <h2 style={{ fontFamily: 'Playfair Display SC', color: 'var(--color-primary)', fontWeight: 800, marginBottom: '24px', borderBottom: '2px solid #E2E8F0', paddingBottom: '16px' }}>Your Order</h2>
+        
+        {error && (
+          <div style={{ padding: '16px', background: '#FEE2E2', color: '#DC2626', borderRadius: '12px', marginBottom: '24px', fontWeight: 600 }}>
+            {error}
+          </div>
+        )}
 
-      <div className="gf-cart__list" aria-label="Items in your cart">
-        {cartData.map((food, index) => (
-          <article className="gf-cart__item" key={`${food.id || food.name}-${index}`}>
-            <div className="gf-cart__media">
-              {food.img ? (
-                <img src={food.img} alt={food.name} loading="lazy" />
-              ) : (
-                <div className="gf-cart__media-fallback" aria-hidden="true">
-                  GF
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '32px' }}>
+          {cartData.map((food, index) => (
+            <article key={`${food.id || food.name}-${index}`} style={{ display: 'flex', alignItems: 'center', gap: '20px', padding: '16px', border: '1px solid #E2E8F0', borderRadius: '16px', background: '#F8FAFC' }}>
+              <div style={{ width: '80px', height: '80px', borderRadius: '12px', overflow: 'hidden', flexShrink: 0, background: '#E2E8F0' }}>
+                {food.img ? (
+                  <img src={food.img} alt={food.name} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                ) : (
+                  <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-primary)', fontWeight: 800 }}>GF</div>
+                )}
+              </div>
+
+              <div style={{ flex: 1 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                  <h4 style={{ margin: 0, color: 'var(--color-text)', fontWeight: 800, fontSize: '1.2rem' }}>{food.name}</h4>
+                  <span style={{ fontSize: '0.8rem', background: '#DBEAFE', color: 'var(--color-primary)', padding: '2px 8px', borderRadius: '999px', fontWeight: 700 }}>{food.size}</span>
                 </div>
-              )}
-            </div>
-
-            <div className="gf-cart__item-main">
-              <div className="gf-cart__item-title-wrap">
-                <h4 className="gf-cart__item-title">{food.name}</h4>
-                <span className="gf-cart__chip">{food.size}</span>
-              </div>
-              <p className="gf-cart__meta">Qty {food.qty} x {food.size}</p>
-            </div>
-
-            <div className="gf-cart__item-right">
-              <div className="gf-cart__qty-controls" aria-label={`Quantity controls for ${food.name}`}>
-                <button
-                  type="button"
-                  className="gf-cart__qty-btn"
-                  onClick={() => handleChangeQuantity(food, index, -1)}
-                  aria-label={`Decrease quantity of ${food.name}`}
-                >
-                  -
-                </button>
-                <span className="gf-cart__qty-value">{food.qty}</span>
-                <button
-                  type="button"
-                  className="gf-cart__qty-btn"
-                  onClick={() => handleChangeQuantity(food, index, 1)}
-                  aria-label={`Increase quantity of ${food.name}`}
-                >
-                  +
-                </button>
+                <p style={{ margin: 0, color: '#64748B', fontSize: '0.9rem', fontWeight: 600 }}>Qty {food.qty} × {food.size}</p>
               </div>
 
-              <strong className="gf-cart__price">₹{food.price}</strong>
-              <button
-                type="button"
-                className="gf-cart__remove"
-                onClick={() => dispatch({ type: 'REMOVE', index })}
-                aria-label={`Remove ${food.name}`}
-              >
-                <Delete fontSize="small" />
-              </button>
-            </div>
-          </article>
-        ))}
-      </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', background: '#fff', border: '1px solid #E2E8F0', borderRadius: '8px', overflow: 'hidden' }}>
+                  <button type="button" onClick={() => handleChangeQuantity(food, index, -1)} style={{ border: 'none', background: 'transparent', padding: '8px 12px', cursor: 'pointer', color: 'var(--color-text)', fontWeight: 800 }}>-</button>
+                  <span style={{ padding: '0 8px', fontWeight: 700, minWidth: '24px', textAlign: 'center' }}>{food.qty}</span>
+                  <button type="button" onClick={() => handleChangeQuantity(food, index, 1)} style={{ border: 'none', background: 'transparent', padding: '8px 12px', cursor: 'pointer', color: 'var(--color-text)', fontWeight: 800 }}>+</button>
+                </div>
 
-      <div className="gf-cart__summary">
-        <div>
-          <p className="gf-cart__summary-label">Total</p>
-          <h3 className="gf-cart__summary-total">₹{totalPrice}</h3>
+                <strong style={{ fontSize: '1.3rem', color: 'var(--color-cta)', fontWeight: 900, minWidth: '80px', textAlign: 'right' }}>₹{food.price}</strong>
+                
+                <button type="button" onClick={() => dispatch({ type: 'REMOVE', index })} style={{ border: 'none', background: '#FEE2E2', color: '#EF4444', padding: '10px', borderRadius: '8px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 0.2s' }}>
+                  <Delete fontSize="small" />
+                </button>
+              </div>
+            </article>
+          ))}
         </div>
-        <button className="gf-btn gf-btn--success gf-cart__checkout" onClick={handleCheckOut} disabled={loading}>
-          {loading ? 'Processing...' : 'Checkout'}
-        </button>
+
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '2px solid #E2E8F0', paddingTop: '24px' }}>
+          <div>
+            <p style={{ margin: 0, color: '#64748B', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px', fontSize: '0.9rem' }}>Total Amount</p>
+            <h3 style={{ margin: 0, color: 'var(--color-primary)', fontSize: '2.5rem', fontWeight: 900 }}>₹{totalPrice}</h3>
+          </div>
+          <button className="btn-primary" onClick={handleCheckOut} disabled={loading} style={{ padding: '16px 48px', fontSize: '1.2rem', borderRadius: '12px', background: 'var(--color-cta)', boxShadow: 'var(--shadow-md)' }}>
+            {loading ? 'Processing...' : 'Checkout & Pay'}
+          </button>
+        </div>
       </div>
     </div>
   );

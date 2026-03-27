@@ -1,268 +1,196 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import Card from '../components/Card';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { ChefHat, Star, Users, Utensils, ArrowRight, ShieldCheck, Zap, Heart } from 'lucide-react';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
-import { API_ENDPOINTS, apiCall } from '../utils/api';
 import './HomeLanding.css';
 
 const stats = [
-  { value: '9+', label: 'Years of Experience' },
-  { value: '120+', label: 'Dishes in Our Menu' },
-  { value: '8.5K+', label: 'Customer Reviews' },
-  { value: '42K+', label: 'Happy Customers' },
+  { value: '120+', label: 'Signature Dishes', icon: <Utensils size={28} />, color: '#F59E0B' },
+  { value: '8.5K+', label: 'Elite Reviews', icon: <Star size={28} />, color: '#10B981' },
+  { value: '42K+', label: 'Gourmet Lovers', icon: <Users size={28} />, color: '#3B82F6' },
+  { value: '9+', label: 'Years of Excellence', icon: <ChefHat size={28} />, color: '#EC4899' },
 ];
 
-const services = [
-  {
-    title: 'Fine Dine Experience',
-    description: 'Elevated flavors and chef-crafted dishes for special evenings and celebrations.',
-    image: '/landing/free-blog-1.png',
-  },
-  {
-    title: 'Fast Delivery',
-    description: 'Your favorites arrive hot and fresh with quick doorstep delivery in your area.',
-    image: '/landing/free-blog-2.png',
-  },
-  {
-    title: 'Private Events',
-    description: 'Host birthdays, meetings, and gatherings with custom menu planning and service.',
-    image: '/landing/free-blog-3.png',
-  },
-];
-
-const chefs = [
-  { name: 'Ethan Ward', role: 'Executive Chef', image: '/landing/chef-1.png' },
-  { name: 'Olivia Stone', role: 'Pastry Specialist', image: '/landing/chef-2.png' },
-  { name: 'Lucas Gray', role: 'Sous Chef', image: '/landing/chef-3.png' },
-  { name: 'Mia Foster', role: 'Kitchen Lead', image: '/landing/chef-4.png' },
-];
-
-const faqs = [
-  {
-    q: 'Do you offer table reservations?',
-    a: 'Yes. You can reserve your table in advance for lunch and dinner slots based on availability.',
-  },
-  {
-    q: 'Can I place custom food requests?',
-    a: 'Absolutely. Add your request while ordering and our team will do the best possible customization.',
-  },
-  {
-    q: 'Do you deliver late night orders?',
-    a: 'Delivery timing depends on your location. Most zones are available until 11 PM daily.',
-  },
+const features = [
+  { title: "Gourmet Quality", desc: "Chef-crafted recipes using premium ingredients.", icon: <Zap className="text-amber-500" /> },
+  { title: "Safe & Secure", desc: "Hygienic preparation and contactless delivery.", icon: <ShieldCheck className="text-green-500" /> },
+  { title: "Made with Love", desc: "Traditional flavors prepared with passion.", icon: <Heart className="text-red-500" /> }
 ];
 
 export default function Home() {
-  const [foodCat, setFoodCat] = useState([]);
-  const [foodItems, setFoodItems] = useState([]);
-  const [search, setSearch] = useState('');
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0 }
+  };
 
-  const loadFoodItems = useCallback(async () => {
-    try {
-      setLoading(true);
-      setError(null);
-
-      const response = await apiCall(API_ENDPOINTS.GET_FOOD_DATA, {
-        method: 'POST',
-      });
-
-      if (response.success && response.data) {
-        setFoodItems(response.data[0] || []);
-        setFoodCat(response.data[1] || []);
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
       }
-    } catch (err) {
-      console.error('Failed to load food items:', err);
-      setError('Failed to load food items. Please try again later.');
-    } finally {
-      setLoading(false);
     }
-  }, []);
-
-  useEffect(() => {
-    loadFoodItems();
-  }, [loadFoodItems]);
+  };
 
   return (
     <div className="landing-root">
       <Navbar />
 
+      {/* Hero Section */}
       <section className="landing-hero" id="home">
         <div className="landing-hero-overlay" />
-        <img src="/landing/dishes-hero.png" alt="Restaurant dishes" className="landing-hero-image" />
+        <motion.div 
+          initial={{ scale: 1.1, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.5 }}
+          className="landing-hero-image-container"
+        >
+          <img src="/landing/dishes-hero.png" alt="Restaurant dishes" className="landing-hero-image" />
+        </motion.div>
+        
         <div className="landing-container landing-hero-content">
-          <span className="landing-pill">Serving Food Lovers Since 2016</span>
-          <h1>Savor Every Bite. Savor Every Moment.</h1>
-          <p>
-            Welcome to a dining experience where flavor, freshness, and hospitality come together.
-            Every plate is made to impress.
-          </p>
-          <a href="#menu" className="landing-cta">
-            Explore Menu
-          </a>
-        </div>
-      </section>
-
-      <section className="landing-about" id="about-us">
-        <div className="landing-container">
-          <div className="landing-headline">
-            <h2>About Us</h2>
-            <p>
-              Our achievement story stands as a testament to teamwork and perseverance. We have
-              faced challenges, celebrated victories, and created a consistent dining standard.
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeInUp}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <span className="landing-pill">✨ The Ultimate Food Experience</span>
+            <h1 className="display-1 fw-black mb-4">Crafting <span className="text-gradient"> Culinary</span> <br/>Masterpieces</h1>
+            <p className="lead mb-5 text-balance">
+              Experience the fusion of traditional techniques and modern flair. 
+              Our chef-crafted menu promises a journey of flavors in every bite.
             </p>
-          </div>
-
-          <div className="landing-about-media">
-            <img src="/landing/restaurant-about-us.png" alt="Restaurant interior" />
-          </div>
-
-          <div className="landing-stats-grid">
-            {stats.map((item) => (
-              <div key={item.label} className="landing-stat-card">
-                <h3>{item.value}</h3>
-                <p>{item.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="landing-services" id="services">
-        <div className="landing-container">
-          <div className="landing-headline">
-            <h2>Crafting Moments, Serving You</h2>
-            <p>
-              From unforgettable flavors to seamless service, we are here to make every meal feel
-              special.
-            </p>
-          </div>
-          <div className="landing-service-grid">
-            {services.map((service) => (
-              <article key={service.title} className="landing-service-card">
-                <img src={service.image} alt={service.title} />
-                <div>
-                  <h3>{service.title}</h3>
-                  <p>{service.description}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="landing-team" id="team">
-        <div className="landing-container">
-          <div className="landing-headline">
-            <h2>Meet Our Team</h2>
-            <p>The experts behind every delicious experience.</p>
-          </div>
-          <div className="landing-chef-grid">
-            {chefs.map((chef) => (
-              <article key={chef.name} className="landing-chef-card">
-                <img src={chef.image} alt={chef.name} />
-                <h3>{chef.name}</h3>
-                <p>{chef.role}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="landing-faq" id="faqs">
-        <div className="landing-container">
-          <div className="landing-headline">
-            <h2>Frequently Asked Questions</h2>
-            <p>Quick answers to common questions about your dining and ordering experience.</p>
-          </div>
-          <div className="landing-faq-list">
-            {faqs.map((item) => (
-              <details key={item.q} className="landing-faq-item">
-                <summary>{item.q}</summary>
-                <p>{item.a}</p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="landing-menu" id="menu">
-        <div className="landing-container">
-          <div className="landing-headline">
-            <h2>Order From Our Menu</h2>
-            <p>Search and discover your favorite dishes.</p>
-          </div>
-
-          <div className="landing-search-wrap">
-            <input
-              className="landing-search"
-              type="search"
-              placeholder="Search your favorite food"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-            {search && (
-              <button className="landing-clear" onClick={() => setSearch('')}>
-                Clear
-              </button>
-            )}
-          </div>
-
-          {loading && <div className="landing-state-box">Loading delicious food...</div>}
-
-          {error && (
-            <div className="landing-state-box landing-state-error">
-              <p>{error}</p>
-              <button className="landing-cta" onClick={loadFoodItems}>
-                Retry
-              </button>
+            <div className="d-flex flex-wrap gap-4 align-items-center">
+              <Link to="/menu" className="landing-cta px-5 py-3 shadow-lg">
+                Explore The Menu <ArrowRight size={20} className="ms-2" />
+              </Link>
+              <Link to="/signup" className="glass-btn px-5 py-3">
+                Become a Member
+              </Link>
             </div>
-          )}
+          </motion.div>
+        </div>
+      </section>
 
-          {!loading && !error && foodCat.length > 0 &&
-            foodCat.map((category) => {
-              const filteredItems = foodItems.filter(
-                (item) =>
-                  item.CategoryName === category.CategoryName &&
-                  item.name.toLowerCase().includes(search.toLowerCase())
-              );
+      {/* Bento Grid Stats Section */}
+      <section className="py-5 bg-dots">
+        <div className="landing-container py-5">
+          <div className="text-center mb-5">
+            <span className="section-subtitle">Our Impact</span>
+            <h2 className="display-4 fw-black">Trusted by Thousands</h2>
+          </div>
+          
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="bento-grid"
+          >
+            {stats.map((item, idx) => (
+              <motion.div 
+                key={item.label}
+                variants={fadeInUp}
+                className={`bento-item bento-item-${idx+1}`}
+                style={{ '--accent-color': item.color }}
+              >
+                <div className="bento-icon-wrap">
+                  {item.icon}
+                </div>
+                <div>
+                  <h3 className="bento-value">{item.value}</h3>
+                  <p className="bento-label">{item.label}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
 
-              if (filteredItems.length === 0 && search) {
-                return null;
-              }
-
-              return (
-                <div key={category._id || category.CategoryName} className="landing-category-block">
-                  <h3>{category.CategoryName}</h3>
-                  <div className="landing-food-grid">
-                    {filteredItems.map((item) => (
-                      <Card
-                        key={item._id}
-                        foodName={item.name}
-                        item={item}
-                        options={item.options[0]}
-                        ImgSrc={item.img}
-                      />
-                    ))}
+      {/* Features Section */}
+      <section className="py-5 overflow-hidden">
+        <div className="landing-container">
+          <div className="row g-5 align-items-center">
+            <div className="col-lg-6">
+              <motion.div 
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="about-image-stack"
+              >
+                <div className="about-main-image shadow-elite">
+                   <img src="/landing/restaurant-about-us.png" alt="Chef plating" />
+                </div>
+                <div className="about-floating-card shadow-lg">
+                  <div className="d-flex align-items-center gap-3">
+                    <div className="bg-amber-100 p-2 rounded-3 text-amber-600">
+                      <ChefHat size={32} />
+                    </div>
+                    <div>
+                      <div className="fw-black h4 mb-0">Master Chef</div>
+                      <div className="small text-muted">Amanat Ullah</div>
+                    </div>
                   </div>
                 </div>
-              );
-            })}
-
-          {!loading && !error && foodCat.length === 0 && (
-            <div className="landing-state-box">No categories available right now.</div>
-          )}
+              </motion.div>
+            </div>
+            <div className="col-lg-6">
+              <div className="ps-lg-4">
+                <span className="section-subtitle text-start">Why Choose Us</span>
+                <h2 className="display-4 fw-black mb-5">Excellence in Every Dish</h2>
+                
+                <div className="d-flex flex-column gap-4">
+                  {features.map((f, i) => (
+                    <motion.div 
+                      key={i}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      className="feature-card-elite"
+                    >
+                      <div className="feature-icon">{f.icon}</div>
+                      <div>
+                        <h4 className="fw-black mb-1">{f.title}</h4>
+                        <p className="mb-0 text-muted">{f.desc}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="landing-contact" id="contact-us">
-        <div className="landing-container landing-contact-box">
-          <h2>Ready to Reserve Your Table?</h2>
-          <p>Enjoy handcrafted meals and warm hospitality in a cozy atmosphere.</p>
-          <a href="#menu" className="landing-cta">
-            Book A Table
-          </a>
+      {/* CTA Final */}
+      <section className="py-5 mb-5">
+        <div className="landing-container">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="cta-banner-elite"
+          >
+            <div className="position-relative z-1 text-center py-5">
+              <h2 className="display-3 fw-black text-white mb-4">Ready for a Gourmet Journey?</h2>
+              <p className="lead text-white opacity-80 mb-5 mx-auto" style={{ maxWidth: '600px' }}>
+                Join our elite community and get exclusive access to signature recipes and member-only events.
+              </p>
+              <div className="d-flex justify-content-center gap-3">
+                <Link to="/menu" className="btn btn-light btn-lg rounded-pill px-5 py-3 fw-black">
+                  Start Ordering Now
+                </Link>
+                <Link to="/login" className="btn btn-outline-light btn-lg rounded-pill px-5 py-3 fw-bold">
+                  Sign In
+                </Link>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 

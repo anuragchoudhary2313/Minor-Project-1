@@ -1,0 +1,67 @@
+[
+  {
+    "_id": "b1",
+    "CategoryName": "Biryani",
+    "name": "Hyderabadi Chicken Biryani",
+    "img": "/chicken_biryani.png",
+    "options": [
+      {
+        "half": "180",
+        "full": "320"
+      }
+    ],
+    "description": "Authentic dum biryani with marinated chicken and long-grain basmati rice."
+  },
+  {
+    "_id": "b2",
+    "CategoryName": "Biryani",
+    "name": "Lucknowi Mutton Biryani",
+    "img": "https://images.unsplash.com/photo-1589302168068-1c49826d5df6?w=500&auto=format",
+    "options": [
+      {
+        "half": "250",
+        "full": "450"
+      }
+    ],
+    "description": "Aromatic Awadhi biryani with tender mutton pieces."
+  },
+  {
+    "_id": "b3",
+    "CategoryName": "Biryani",
+    "name": "Veg Lucknawi Biryani",
+    "img": "/veg_biryani.png",
+    "options": [
+      {
+        "half": "140",
+        "full": "240"
+      }
+    ],
+    "description": "Fragrant vegetable biryani cooked with subtle spices."
+  },
+  {
+    "_id": "b4",
+    "CategoryName": "Biryani",
+    "name": "Egg Dum Biryani",
+    "img": "https://images.unsplash.com/photo-1543332164-6e82f355bab1?w=500&auto=format",
+    "options": [
+      {
+        "half": "130",
+        "full": "220"
+      }
+    ],
+    "description": "Traditional egg biryani with spiced boiled eggs."
+  },
+  {
+    "_id": "b5",
+    "CategoryName": "Biryani",
+    "name": "Prawns Masala Biryani",
+    "img": "https://images.unsplash.com/photo-1516714435131-44d6b64dc6a2?w=500&auto=format",
+    "options": [
+      {
+        "half": "280",
+        "full": "520"
+      }
+    ],
+    "description": "Spicy coastal biryani with fresh prawns and coastal spices."
+  }
+]
