@@ -1,0 +1,39 @@
+# Root-level .gitignore
+
+# Workspace/repo-level tooling and design folders
+/.agent/
+/design-system/
+/Gofood/design-system/
+
+# Gofood app-level ignores (merged from Gofood/.gitignore)
+
+# dependencies
+/Gofood/node_modules/
+/Gofood/.pnp/
+/Gofood/.pnp.js
+
+# testing
+/Gofood/coverage/
+
+# production
+/Gofood/build/
+
+# misc
+/Gofood/.DS_Store
+/Gofood/.env
+/Gofood/.env.local
+/Gofood/.env.development.local
+/Gofood/.env.test.local
+/Gofood/.env.production.local
+
+/Gofood/npm-debug.log*
+/Gofood/yarn-debug.log*
+/Gofood/yarn-error.log*
+
+# local diagnostics
+/Gofood/start-log.txt
+/Gofood/trace-log.txt
+/Gofood/backend/start-diag.js
+
+# runtime config
+/Gofood/public/backend-runtime.json
